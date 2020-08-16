@@ -7,8 +7,7 @@ public class PlayerController : MonoBehaviour {
     private PoolStateMachine _poolStateMachine;
     // Start is called before the first frame update
     void Start() {
-        _poolStateMachine = new PoolStateMachine(this);
-    }
+  }
 
     // Update is called once per frame
     void Update() {

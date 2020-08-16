@@ -196,9 +196,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Run.started += instance.OnRun;
                 @Run.performed += instance.OnRun;
                 @Run.canceled += instance.OnRun;
-                @Jump.started += instance.OnJump;
+       @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
+                         @Jump.canceled += instance.OnJump;
             }
         }
     }
