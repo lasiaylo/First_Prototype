@@ -1,18 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using States;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class PlayerController : MonoBehaviour {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
