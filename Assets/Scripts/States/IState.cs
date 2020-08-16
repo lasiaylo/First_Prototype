@@ -2,12 +2,12 @@
 
 namespace States {
     public interface IState {
-        void Enter(GameObject player);
+        void Enter();
 
-        void Update(GameObject player);
+        void Update();
 
-        void FixedUpdate(GameObject player);
+        void FixedUpdate();
 
-        void Exit(GameObject player);
+        void Exit();
     }
 }
