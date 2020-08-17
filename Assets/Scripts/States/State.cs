@@ -4,10 +4,12 @@ using UnityEngine;
 
 namespace States {
     public abstract class State<T> {
-        protected StateMachine<T> StateMachine;
+        protected StateMachine<T> StateMachine { get; }
         protected State(StateMachine<T> stateMachine) {
             StateMachine = stateMachine;
         }
+
+        protected State() { }
 
         public abstract void Enter(T owner);
         

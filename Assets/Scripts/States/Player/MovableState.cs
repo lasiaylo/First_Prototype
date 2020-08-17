@@ -1,17 +1,13 @@
-﻿using UnityEngine;
-using UnityEngine.InputSystem;
-
-namespace States {
+﻿namespace States.Player {
     public abstract class MovableState : State<PlayerController> {
+        protected MovableState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
-        protected MovableState(StateMachine<PlayerController> stateMachine) : base(stateMachine) { }
-
-        public override void Enter(PlayerController player) { }
+        public override void Enter(PlayerController playerController) { }
 
         public override void Update(PlayerController player) {
-            StateMachine.Actions;
+            player.PlayerActions
         }
-
+        
         public override void FixedUpdate(PlayerController player) {
             throw new System.NotImplementedException();
         }

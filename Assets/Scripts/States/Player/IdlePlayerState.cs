@@ -1,8 +1,6 @@
-﻿using UnityEngine;
-
-namespace States {
+﻿namespace States.Player {
     public class IdlePlayerState : MovableState {
-        public IdlePlayerState(StateMachine<PlayerController> stateMachine) : base(stateMachine) { }
+        public IdlePlayerState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
         public override void Enter(PlayerController owner) {
             throw new System.NotImplementedException();
