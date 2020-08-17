@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace States {
-    public class IdlePlayerState : State<PlayerController> {
+    public class IdlePlayerState : MovableState {
         public IdlePlayerState(StateMachine<PlayerController> stateMachine) : base(stateMachine) { }
 
         public override void Enter(PlayerController owner) {
@@ -20,4 +20,5 @@ namespace States {
             throw new System.NotImplementedException();
         }
     }
+}
     

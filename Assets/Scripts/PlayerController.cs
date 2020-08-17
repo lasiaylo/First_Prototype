@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using States;
-using UnityEditorInternal;
+﻿using States;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
+[RequireComponent(typeof(PlayerActions))] 
 public class PlayerController : MonoBehaviour {
     private PlayerStateMachine _stateMachine;
+    public float speed;
+    public Vector3 velocity;
     
     void Awake() {
         _stateMachine = new PlayerStateMachine(this);
     }
 
     // Update is called once per frame
-    private void FixedUpdate() {
+    public void FixedUpdate() {
         _stateMachine.FixedUpdate(this);
     }
 

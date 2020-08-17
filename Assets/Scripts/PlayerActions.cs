@@ -5,7 +5,7 @@ public enum Action {
     Jumping,
     NotJumping
 }
-public class PlayerActions: MonoBehaviour, PlayerInput.IPlayerActions {
+public class PlayerActions: MonoBehaviour, s {
     [SerializeField] private PlayerInput playerInput;
 
     public Vector3 Direction { get; private set; }
