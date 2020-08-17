@@ -3,30 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace States {
-    public class StateMachine {
-        private IPlayerState _currentPlayerState;
-        private PlayerController _player;
-
-        public StateMachine(PlayerController player) {
-            _player = player;
+    public class StateMachine<T> {
+        private State<T> _currentState;
+        
+        public void SetState(State<T> state)  {
+            _currentState?.Exit(owner);
+            _currentState = state;
+            _currentState.Enter(owner);
         }
 
-        public StateMachine(PlayerController player, IPlayerState initialPlayerState) : this(player) {
-            SetState(initialPlayerState);
+        public void Update(T owner) {
+            _currentState.Update(owner);
         }
 
-        public void SetState(IPlayerState playerState)  {
-            _currentPlayerState?.Exit(TODO);
-            _currentPlayerState = playerState;
-            _currentPlayerState.Enter(TODO);
-        }
-
-        public void Update() {
-            _currentPlayerState.Update(TODO);
-        }
-
-        public void FixedUpdate() {
-            _currentPlayerState.FixedUpdate(TODO);
+        public void FixedUpdate(T owner) {
+            _currentState.FixedUpdate(owner);
         }
     }
 }

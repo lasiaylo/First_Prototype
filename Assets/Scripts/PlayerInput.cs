@@ -19,7 +19,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
             ""id"": ""364ce014-120f-47ab-be22-a8d1080dae8a"",
             ""actions"": [
                 {
-                    ""name"": ""Run"",
+                    ""name"": ""Movement"",
                     ""type"": ""Button"",
                     ""id"": ""69cc9664-32a3-4ad9-aa58-b925ce43855a"",
                     ""expectedControlType"": ""Button"",
@@ -43,7 +43,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Run"",
+                    ""action"": ""Movement"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -54,7 +54,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Run"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -65,7 +65,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Run"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -76,7 +76,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Run"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -87,7 +87,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Run"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -115,7 +115,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
+        m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
     }
 
@@ -166,13 +166,13 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Run;
+    private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Run => m_Wrapper.m_Player_Run;
+        public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -183,9 +183,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Run.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @Run.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @Run.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
+                @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
@@ -193,12 +193,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Run.started += instance.OnRun;
-                @Run.performed += instance.OnRun;
-                @Run.canceled += instance.OnRun;
-       @Jump.started += instance.OnJump;
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
-                         @Jump.canceled += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -214,7 +214,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     }
     public interface IPlayerActions
     {
-        void OnRun(InputAction.CallbackContext context);
+        void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
     }
 }

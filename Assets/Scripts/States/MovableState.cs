@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace States {
-    public abstract class MovableState: IPlayerState , PlayerInput.IPlayerActions {
+namespace States {    
+    
+    public abstract class MovableState: IPlayerState{
         public void Enter(PlayerController player) {
             spee = 
         }
@@ -19,12 +20,4 @@ namespace States {
             throw new System.NotImplementedException();
         }
 
-        public void OnRun(InputAction.CallbackContext context) {
-            throw new System.NotImplementedException();
-        }
-
-        public void OnJump(InputAction.CallbackContext context) {
-            throw new System.NotImplementedException();
-        }
-    }
 }

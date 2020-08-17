@@ -1,43 +1,27 @@
 ﻿using UnityEngine;
 
 namespace States {
-    public class IdlePlayerState : IPlayerState {
-        private TestStateMachine _tsm;
+    public class IdlePlayerState : State<PlayerController> {
+        public IdlePlayerState(StateMachine stateMachine) : base(stateMachine) { }
 
-        public IdlePlayerState(TestStateMachine tsm) {
-            _tsm = tsm;
-        }
-        public void Enter(PlayerController player) {
+        public IdlePlayerState() : base(BASE) {
+            throw new System.NotImplementedException();
         }
 
-        public void Update(PlayerController player) {
-            _tsm.SetState(new RunningPlayerState(_tsm));
+        public override void Enter(PlayerController owner) {
+          
         }
 
-        public void FixedUpdate(PlayerController player) {
+        public override void Update(PlayerController owner) {
+            StateMachine.SetState();
         }
 
-        public void Exit(PlayerController player) {
+        public override void FixedUpdate(PlayerController owner) {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Exit(PlayerController owner) {
+            throw new System.NotImplementedException();
         }
     }
-
-    public class RunningPlayerState : IPlayerState {
-        private TestStateMachine _tsm;
-
-        public RunningPlayerState(TestStateMachine tsm) {
-            _tsm = tsm;
-        }
-        public void Enter(PlayerController player) {
-        }
-
-        public void Update(PlayerController player) {
-            _tsm.SetState(new IdlePlayerState(_tsm));
-        }
-
-        public void FixedUpdate(PlayerController player) {
-        }
-
-        public void Exit(PlayerController player) {
-        }
-    }
-}
+    
