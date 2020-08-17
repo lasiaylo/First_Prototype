@@ -12,14 +12,12 @@ namespace States {
             _currentState.Enter(owner);
         }
 
-        public void UpdateState(T owner) {
+        public void Update(T owner) {
             _currentState.Update(owner);
         }
 
         public void FixedUpdate(T owner) {
             _currentState.FixedUpdate(owner);
         }
-
-
     }
 }

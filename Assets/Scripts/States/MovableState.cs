@@ -3,7 +3,8 @@ using UnityEngine.InputSystem;
 
 namespace States {    
     
-    public abstract class MovableState: IPlayerState{
+    public abstract class MovableState: IPlayerState {
+        
         public void Enter(PlayerController player) {
             spee = 
         }
