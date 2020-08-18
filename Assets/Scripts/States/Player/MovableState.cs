@@ -7,7 +7,6 @@ namespace States.Player {
         public override void Enter(PlayerController playerController) { }
 
         public override void Update(PlayerController player) {
-            Debug.Log("Moving state!");
             player.Movement.Move(player.PlayerInputCache.Direction);
         }
         

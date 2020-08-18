@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
 
@@ -20,7 +21,6 @@ public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
         Action = Action.NotJumping;
         _playerInput = new PlayerInput();
         _playerInput.Gameplay.SetCallbacks(this);
-        Debug.Log("DUDE");
     }
     
     public void OnMovement(InputAction.CallbackContext context) {
@@ -30,13 +30,14 @@ public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        Debug.Log("BIGJUMPS");
         Action = context.performed ? Action.Jumping : Action.NotJumping;
     }
 
     public void OnEnable() {
-        Debug.Log("ENABLING");
         _playerInput.Enable();
     }
 
+    public void OnDisable() {
+        _playerInput.Disable();
+    }
 }

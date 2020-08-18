@@ -16,10 +16,7 @@ public class Movement: MonoBehaviour {
     }
 
     public void Move(Vector3 direction) {
-        Debug.Log("WOW this is really moving!");
         if (direction.magnitude >= 0.1f) {
-            Debug.Log("OHBOY lOOK AT US GO");
-            
             Controller.Move(direction * speed * Time.deltaTime);
         }
     }
