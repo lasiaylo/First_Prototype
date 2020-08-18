@@ -5,15 +5,9 @@
         public override void Enter(PlayerController playerController) { }
 
         public override void Update(PlayerController player) {
-            player.PlayerActions
+            player.Movement.Move(player.Action.Direction);
         }
         
-        public override void FixedUpdate(PlayerController player) {
-            throw new System.NotImplementedException();
-        }
-
-        public override void Exit(PlayerController player) {
-            throw new System.NotImplementedException();
-        }
+        public override void Exit(PlayerController player) { }
     }
 }

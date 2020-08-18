@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace States {
-    public abstract class StateMachine<T> {
+    public class StateMachine<T> {
         private State<T> _currentState;
         
         public void SetState(State<T> state, T owner)  {
@@ -12,12 +12,8 @@ namespace States {
             _currentState.Enter(owner);
         }
 
-        public virtual void Update(T owner) {
+        public void Update(T owner) {
             _currentState.Update(owner);
-        }
-
-        public virtual void FixedUpdate(T owner) {
-            _currentState.FixedUpdate(owner);
         }
     }
 }

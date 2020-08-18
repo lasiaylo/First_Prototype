@@ -8,15 +8,17 @@ namespace States {
         protected State(StateMachine<T> stateMachine) {
             StateMachine = stateMachine;
         }
-
-        protected State() { }
-
+        
         public abstract void Enter(T owner);
         
         public abstract void Update(T owner);
         
-        public abstract void FixedUpdate(T owner);
-        
         public abstract void Exit(T owner);
+    }
+
+    // Might be useless
+    public abstract class PhysicsState<T>: State<T> {
+        protected PhysicsState(StateMachine<T> stateMachine) : base(stateMachine) { }
+        public abstract void FixedUpdate(T owner);
     }
 }

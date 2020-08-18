@@ -2,24 +2,21 @@
 using States.Player;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerActions))] 
+[RequireComponent(typeof(PlayerAction))]
 public class PlayerController : MonoBehaviour {
-    private PlayerStateMachine _stateMachine;
-    public float speed;
-    public Vector3 velocity;
-    public PlayerActions PlayerActions { get; private set; }
+    public PlayerStateMachine StateMachine { get; private set; }
+
+    public PlayerAction Action { get; private set; }
+    public Movement Movement { get; private set; }
+    
     
     void Awake() {
-        _stateMachine = new PlayerStateMachine(this);
-        PlayerActions = GetComponent<PlayerActions>();
-    }
-
-    // Update is called once per frame
-    public void FixedUpdate() {
-        _stateMachine.FixedUpdate(this);
+        StateMachine = new PlayerStateMachine(this);
+        Action = GetComponent<PlayerAction>();
+        Movement = GetComponent<Movement>();
     }
 
     public void Update() {
-        _stateMachine.Update(this);
+        StateMachine.Update(this);
     }
 }
