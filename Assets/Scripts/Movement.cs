@@ -1,23 +1,26 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(CharacterController))]
 public class Movement: MonoBehaviour {
-    public float Speed { get; private set; }
+    [SerializeField] private float speed;
     
     public Vector3 Velocity { get; private set; }
     
     public CharacterController Controller { get; private set; }
     
     public void Awake() {
-        Speed = 0;
         Velocity = new Vector3();
         Controller = GetComponent<CharacterController>();
     }
 
     public void Move(Vector3 direction) {
+        Debug.Log("WOW this is really moving!");
         if (direction.magnitude >= 0.1f) {
-            Controller.Move(direction * Speed * Time.deltaTime);
+            Debug.Log("OHBOY lOOK AT US GO");
+            
+            Controller.Move(direction * speed * Time.deltaTime);
         }
     }
 }
