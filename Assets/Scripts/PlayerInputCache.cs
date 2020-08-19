@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public enum Action {
     Jumping,
@@ -10,9 +11,9 @@ public enum Action {
 public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
     public Action Action { get; private set; }
 
-    public Vector3 Direction { private set; get; }
+    [SerializeField] public Vector3 Direction;
 
-    [SerializeField] private InputAction.CallbackContext _context;
+    [SerializeField] private InputAction.CallbackContext context;
     
     private PlayerInput _playerInput;
 
@@ -25,7 +26,7 @@ public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
     
     public void OnMovement(InputAction.CallbackContext context) {
         var input = context.ReadValue<Vector2>();
-        _context = context;
+        this.context = context;
         Direction = new Vector3(input.x, 0f, input.y).normalized;
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace States {
     public abstract class State<T> {
-        protected StateMachine<T> StateMachine { get; }
+        protected StateMachine<T> StateMachine { get; private set; }
         protected State(StateMachine<T> stateMachine) {
             StateMachine = stateMachine;
         }

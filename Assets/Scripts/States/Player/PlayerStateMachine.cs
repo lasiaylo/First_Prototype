@@ -5,7 +5,7 @@
         
         public PlayerStateMachine(PlayerController playerController) {
             PlayerController = playerController;
-            SetState(new IdlePlayerState(this), playerController);
+            SetState(new IdleState(this), playerController);
         }
     }
 }
