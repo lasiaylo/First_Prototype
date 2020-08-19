@@ -1,36 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Movement {
-    /// <summary>
-    /// Handles GameObject Movement. 
-    /// </summary>
-    /// <remarks>
-    /// Adapted from Dapper Dino's design seen on
-    /// github.com/DapperDino/Dapper-Tools/tree/master/Runtime/Components/Movements
-    /// </remarks>
-    [RequireComponent(typeof(CharacterController))]
-    public class Movement: MonoBehaviour {
-        private CharacterController _controller;
-        [SerializeField] private List<IMovementModifier> modifiers = new List<IMovementModifier>();
+[RequireComponent(typeof(CharacterController))]
+public class Movement: MonoBehaviour {
+    [SerializeField] private float speed;
     
-        public void Awake() {
-            _controller = GetComponent<CharacterController>();
-        }
+    public Vector3 Velocity { get; private set; }
+    
+    public CharacterController Controller { get; private set; }
+    
+    public void Awake() {
+        Velocity = new Vector3();
+        Controller = GetComponent<CharacterController>();
+    }
 
-        public void AddModifier(IMovementModifier mod) => modifiers.Add(mod);
-
-        public void RemoveModifier(IMovementModifier mod) => modifiers.Add(mod);
-
-        public void Move(float deltaTime) {
-            Vector3 direction = modifiers.Aggregate(Vector3.zero,
-                (current, mod) => current + mod.Direction);
-            _controller.Move(direction * deltaTime);
-        }
-
-        public void Move() {
-            Move(Time.deltaTime);
+    public void Move(Vector3 direction) {
+        if (direction.magnitude >= 0.1f) {
+            Controller.Move(direction * speed * Time.deltaTime);
         }
     }
 }
