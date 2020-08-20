@@ -11,8 +11,8 @@ namespace States.Player {
             Debug.Log("RUNNING");
         }
 
-        public override void Update(PlayerController player) {
-            base.Update(player);
+        public override void Tick(PlayerController player) {
+            base.Tick(player);
             if (player.PlayerInputCache.Direction == Vector3.zero) {
                 StateMachine.SetState(new IdleState(StateMachine), player);
             }

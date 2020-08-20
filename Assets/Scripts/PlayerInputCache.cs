@@ -4,26 +4,25 @@ using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public enum Action {
-    Jumping,
-    NotJumping,
+[Serializable]
+public enum Action: int {
+    NotJumping = 0,
+    Jumping = 1,
 }
 public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
     public Action Action { get; private set; }
-
-    [SerializeField] public Vector3 Direction;
-
-    [SerializeField] private InputAction.CallbackContext context;
-    
-    private PlayerInput _playerInput;
+    public Vector3 Direction;
+    private InputAction.CallbackContext context;
 
     public void Awake() {
-        Direction = new Vector3();
         Action = Action.NotJumping;
+        Direction = new Vector3();
         _playerInput = new PlayerInput();
         _playerInput.Gameplay.SetCallbacks(this);
     }
-    
+
+    private PlayerInput _playerInput;
+
     public void OnMovement(InputAction.CallbackContext context) {
         var input = context.ReadValue<Vector2>();
         this.context = context;

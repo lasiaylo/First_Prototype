@@ -12,8 +12,8 @@ namespace States {
             _currentState.Enter(owner);
         }
 
-        public void Update(T owner) {
-            _currentState.Update(owner);
+        public void Tick(T owner) {
+            _currentState.Tick(owner);
         }
     }
 }
