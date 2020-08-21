@@ -10,7 +10,7 @@ namespace States.Player {
         
         public override void Tick(PlayerController player) {
             player.Gravity.Tick(player.Controller.isGrounded);
-            player.LinearMove.Tick(
+            player.LinearAccelerate.Tick(
                 _acceleration,
                 _friction,
                 _maxSpeed,

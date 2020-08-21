@@ -14,7 +14,7 @@ namespace Motion {
     public class Movement: MonoBehaviour {
         public List<MovementMod> modifiers = new List<MovementMod>();
         private CharacterController _controller;
-        private Vector3 _direction;
+        public Vector3 Direction { get; private set; }
     
         public void Awake() {
             _controller = GetComponent<CharacterController>();
@@ -25,9 +25,9 @@ namespace Motion {
         public void RemoveModifier(MovementMod mod) => modifiers.Add(mod);
 
         public void Tick(float deltaTime) {
-            _direction = modifiers.Aggregate(Vector3.zero,
+            Direction = modifiers.Aggregate(Vector3.zero,
                 (current, mod) => current + mod.Direction);
-            _controller.Move(_direction * deltaTime);
+            _controller.Move(Direction * deltaTime);
         }
 
         public void Tick() {

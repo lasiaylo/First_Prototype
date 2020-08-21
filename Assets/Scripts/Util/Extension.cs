@@ -22,5 +22,13 @@ namespace Util {
         public static bool IsZero(this Vector3 val) {
             return Math.Abs(val.magnitude) < _tolerance;
         }
+
+        public static bool IsZero(this Vector2 val) {
+            return Math.Abs(val.magnitude) < _tolerance;
+        }
+
+        public static Vector2 Xz(this Vector3 val) {
+            return new Vector2(val.x, val.z);
+        }
     }
 }

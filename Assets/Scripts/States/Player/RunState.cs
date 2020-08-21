@@ -1,6 +1,7 @@
 ﻿
 
 using UnityEngine;
+using Util;
 
 namespace States.Player {
     public class RunState: MovableState {
@@ -13,7 +14,11 @@ namespace States.Player {
 
         public override void Tick(PlayerController player) {
             base.Tick(player);
-            if (player.PlayerInputCache.Direction == Vector3.zero) {
+            if (player.PlayerInputCache.Action == Action.Jumping) {
+                StateMachine.SetState(new JumpState(StateMachine), player);
+            }
+            else if (player.PlayerInputCache.Direction.IsZero() 
+                     && player.Movement.Direction.Xz().IsZero()) {
                 StateMachine.SetState(new IdleState(StateMachine), player);
             }
         }

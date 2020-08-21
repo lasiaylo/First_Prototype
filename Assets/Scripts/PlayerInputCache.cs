@@ -6,8 +6,8 @@ using UnityEngine.Serialization;
 
 [Serializable]
 public enum Action: int {
-    NotJumping = 0,
-    Jumping = 1,
+    NotJumping,
+    Jumping,
 }
 public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
     public Action Action { get; private set; }

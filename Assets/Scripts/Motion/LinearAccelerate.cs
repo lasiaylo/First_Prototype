@@ -5,7 +5,7 @@ using Util;
 
 namespace Motion {
     [Serializable]
-    public class LinearMove: MovementMod {
+    public class LinearAccelerate: MovementMod {
         public void Tick(float acceleration, float friction, float maxSpeed, Vector3 direction) {
             if (!base.Enabled) return;
             Direction = direction.IsZero()
