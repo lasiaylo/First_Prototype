@@ -4,7 +4,7 @@ using UnityEngine;
 using Util;
 
 namespace States.Player {
-    public class RunState: MovableState {
+    public class RunState: GroundedState {
         public RunState(StateMachine<PlayerController> stateMachine) : base(stateMachine) { }
         
         
@@ -14,11 +14,8 @@ namespace States.Player {
 
         public override void Tick(PlayerController player) {
             base.Tick(player);
-            if (player.PlayerInputCache.Action == Action.Jumping) {
-                StateMachine.SetState(new JumpState(StateMachine), player);
-            }
-            else if (player.PlayerInputCache.Direction.IsZero() 
-                     && player.Movement.Direction.Xz().IsZero()) {
+            if (player.PlayerInputCache.Direction.IsZero() 
+                && player.Movement.Direction.Xz().IsZero()) { 
                 StateMachine.SetState(new IdleState(StateMachine), player);
             }
         }

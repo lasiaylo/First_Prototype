@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace States.Player {
-    public class IdleState : MovableState {
+    public class IdleState : GroundedState {
         public IdleState(StateMachine<PlayerController> stateMachine) : base(stateMachine) { }
 
         public override void Enter(PlayerController owner) {
