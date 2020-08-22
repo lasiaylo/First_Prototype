@@ -7,7 +7,6 @@ namespace States.Player {
     public class RunState: GroundedState {
         public RunState(StateMachine<PlayerController> stateMachine) : base(stateMachine) { }
         
-        
         public override void Enter(PlayerController owner) {
             Debug.Log("RUNNING");
         }

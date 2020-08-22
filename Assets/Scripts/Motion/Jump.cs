@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Motion {
     /// <summary>
@@ -11,18 +12,23 @@ namespace Motion {
         private float _timer;
         private float _jumpTime;
 
-        public void StartJump(float jumpVelocity, float jumpTime) {
+        public void StartJump(float jumpVelocity, float jumpTime, Action action) {
             _jumpVelocity = jumpVelocity;
             _timer = 0;
             _jumpTime = jumpTime;
-            Direction = Vector3.up * _jumpVelocity;
+            Direction = Vector3.up * jumpVelocity;
         }
 
-        public bool ContinueJump() {
-            float propertionCompleted = _timer / _jumpTime;
-            Direction = Vector3.Lerp(Direction, Vector3.zero, propertionCompleted);
-            _timer += Time.deltaTime;
-            return propertionCompleted < 1;
+        public Action Tick(Action action) {
+            if (action == Action.Jumping && _timer < _jumpTime) {
+                float propertionCompleted = _timer / _jumpTime;
+                Direction = Vector3.Lerp(Direction, Vector3.zero, propertionCompleted);
+                _timer += Time.deltaTime;
+                return Action.Jumping;
+            }
+            _timer = 0;
+            Direction = Vector3.zero;
+            return Action.NotJumping;
         }
     }
 }

@@ -11,5 +11,5 @@
                 StateMachine.SetState(new JumpState(StateMachine), player);
             }
         }
-    }
+    }                       
 }
