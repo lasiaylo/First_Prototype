@@ -12,6 +12,29 @@ namespace Motion {
         private float _timer;
         private float _jumpTime;
 
+        public void Tick() {
+            if (!isJumping)
+                CancelJump();
+            else if (_timer <= 0)
+                StartJump();
+            else
+                ContinueJump();
+
+        }
+
+        public void StartJump() {
+            _timer = jumpTime;
+            Direction = Vector3.up * jumpVel;
+        }
+
+        public void ContinueJump() {
+            velocity = 
+        }
+
+        public void CancelJump() {
+            
+        }
+        
         public void StartJump(float jumpVelocity, float jumpTime, Action action) {
             _jumpVelocity = jumpVelocity;
             _timer = 0;

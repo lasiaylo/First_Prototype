@@ -1,5 +1,4 @@
-﻿
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using Motion;
 using UnityEngine;
