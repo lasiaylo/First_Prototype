@@ -12,23 +12,30 @@ namespace Motion {
     /// </remarks>
     [RequireComponent(typeof(CharacterController))]
     public class Movement: MonoBehaviour {
-        public List<MovementMod> modifiers = new List<MovementMod>();
         private CharacterController _controller;
 
         private Vector3 _direction;
+
         public Vector3 Direction {
             get => enabled ? _direction : Vector3.zero;
             private set => _direction = value;
         }
+
+        public Vector3 PrevDirection { get; private set; }
+        
+        public List<MovementMod> modifiers = new List<MovementMod>();
 
         public void Start() {
             _controller = GetComponent<CharacterController>();
         }
 
         public void Tick(float deltaTime) {
-            Direction = modifiers.Aggregate(Vector3.zero,
-                (current, mod) => current + mod.Direction);
+            foreach (MovementMod mod in modifiers) {
+                if (mod.enabled)
+                    Direction = mod.Influence(Direction);
+            }
             _controller.Move(Direction * deltaTime);
+            PrevDirection = Direction;
         }
 
         public void Tick() {

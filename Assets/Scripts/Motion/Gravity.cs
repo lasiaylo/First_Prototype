@@ -1,20 +1,22 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Util;
 
 namespace Motion {
     [Serializable]
     public class Gravity : MovementMod {
-        [FormerlySerializedAs("_gravity")] [SerializeField] private float gravity = 1;
-        [FormerlySerializedAs("_grounded")] [SerializeField] private float grounded = 1;
-        
+        [SerializeField] private float gravity = 1;
+        [SerializeField] private float grounded = 1;
+        [SerializeField] private float maxFallSpeed = 10;
+        private float _speed;
+
         public void Tick(bool isGrounded) {
-            if (!enabled) {
-                Debug.Log("DISABLED");
-                return;
-            }
-            float magnitude = isGrounded ? grounded : gravity;
-            Direction = Vector3.down * magnitude;
+            _speed = isGrounded ? grounded : gravity;
+        }
+
+        public override Vector3 Influence(Vector3 direction) {
+            return direction.MoveTowardsY(-maxFallSpeed, _speed * Time.deltaTime);
         }
     }
 }

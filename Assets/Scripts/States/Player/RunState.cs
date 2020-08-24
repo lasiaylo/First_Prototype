@@ -14,7 +14,7 @@ namespace States.Player {
         public override void Tick(PlayerController player) {
             base.Tick(player);
             if (player.PlayerInputCache.Direction.IsZero() 
-                && player.Movement.Direction.Xz().IsZero()) { 
+                && player.Movement.Direction.GetXz().IsZero()) { 
                 StateMachine.SetState(new IdleState(StateMachine), player);
             }
         }
