@@ -3,9 +3,9 @@ using Util;
 
 namespace Motion {
     public class LinearAccelerateXz: LinearAccelerate {
-        public override Vector3 Influence(Vector3 direction) {
-            Target.Set(Target.x, direction.y, Target.z);
-            return base.Influence(direction);
+        public override Vector3 Modify(Vector3 direction) {
+            traits.Target = new Vector3(traits.Target.x, direction.y, traits.Target.z);
+            return base.Modify(direction);
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Motion {
         public void Tick(float deltaTime) {
             foreach (MovementMod mod in modifiers) {
                 if (mod.enabled)
-                    Direction = mod.Influence(Direction);
+                    Direction = mod.Modify(Direction);
             }
             _controller.Move(Direction * deltaTime);
             PrevDirection = Direction;
