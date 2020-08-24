@@ -6,8 +6,6 @@ using UnityEngine;
 
 namespace States.Player {
     public class JumpState: MovableState {
-        private float _jumpVelocity = 50f;
-        private float _jumpTime = 1f;
         public JumpState(StateMachine<PlayerController> stateMachine) : base(stateMachine) { }
         public override void Enter(PlayerController owner) { 
             //Trigger jumping animation

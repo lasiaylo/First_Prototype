@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
 using ScriptableObjects;
+using ScriptableObjects.Prototypes;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Util;
+using Util.Attributes;
 
 namespace Motion {
     /// <summary>
@@ -16,7 +18,7 @@ namespace Motion {
     /// </remarks>
     [Serializable]
     public class LinearAccelerate : MovementMod {
-        [SerializeField] protected LinearAccelerateTraits traits;
+        [Expandable] public LinearAccelerateTraits traits;
 
         public override Vector3 Modify(Vector3 direction) {
             Vector3 target = traits.Target;

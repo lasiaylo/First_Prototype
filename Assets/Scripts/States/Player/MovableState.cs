@@ -1,5 +1,6 @@
 ﻿using Motion;
 using ScriptableObjects;
+using ScriptableObjects.Prototypes;
 using UnityEngine;
 
 namespace States.Player {

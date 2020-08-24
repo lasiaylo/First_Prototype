@@ -1,29 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Util.Attributes;
 
 namespace Motion {
     /// <summary>
     /// Handles GameObject Movement. 
     /// </summary>
     /// <remarks>
-    /// Adapted from Dapper Dino's design seen on
-    /// github.com/DapperDino/Dapper-Tools/tree/master/Runtime/Components/Movements
+    /// Adapted from Dapper Dino's design:https://forum.unity.com/threads/editor-tool-better-scriptableobject-inspector-editing.484393/
+    /// https://github.com/DapperDino/Dapper-Tools/tree/master/Runtime/Components/Movements
     /// </remarks>
     [RequireComponent(typeof(CharacterController))]
     public class Movement: MonoBehaviour {
+        [Expandable] public List<MovementMod> modifiers = new List<MovementMod>();
         private CharacterController _controller;
-
         private Vector3 _direction;
 
         public Vector3 Direction {
             get => enabled ? _direction : Vector3.zero;
             private set => _direction = value;
         }
-
-        public Vector3 PrevDirection { get; private set; }
-        
-        public List<MovementMod> modifiers = new List<MovementMod>();
 
         public void Start() {
             _controller = GetComponent<CharacterController>();
@@ -35,7 +32,6 @@ namespace Motion {
                     Direction = mod.Modify(Direction);
             }
             _controller.Move(Direction * deltaTime);
-            PrevDirection = Direction;
         }
 
         public void Tick() {

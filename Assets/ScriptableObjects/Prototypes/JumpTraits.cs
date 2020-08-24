@@ -1,21 +1,21 @@
 using System;
 using UnityEngine;
 
-namespace ScriptableObjects {
-[CreateAssetMenu]
+namespace ScriptableObjects.Prototypes {
+    [CreateAssetMenu]
     public class JumpTraits : ScriptableObject, ISerializationCallbackReceiver {
-        private Action _initAction;
-        private float _initDuration;
-        private float _initSpeed;
+        [SerializeField] private Action action;
+        [SerializeField] private float duration;
+        [SerializeField] private float speed;
 
         [NonSerialized] public Action Action;
         [NonSerialized] public float Duration;
         [NonSerialized] public float Speed;
 
         public void OnAfterDeserialize() {
-            Action = _initAction;
-            Duration = _initDuration;
-            Speed = _initSpeed;
+            Action = action;
+            Duration = duration;
+            Speed = speed;
         }
         
         public void OnBeforeSerialize() { }

@@ -1,13 +1,14 @@
 ﻿using System;
 using ScriptableObjects;
+using ScriptableObjects.Prototypes;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Util;
+using Util.Attributes;
 
 namespace Motion {
     [Serializable]
     public class Gravity : MovementMod {
-        [SerializeField] private GravityTraits traits;
+        [Expandable] public GravityTraits traits;
 
         public override Vector3 Modify(Vector3 direction) {
             float speed = traits.IsGrounded ? traits.GroundGravity : traits.Gravity; 

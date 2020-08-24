@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using ScriptableObjects;
+using ScriptableObjects.Prototypes;
 using UnityEngine;
 using Util;
+using Util.Attributes;
 
 namespace Motion {
     /// <summary>
@@ -14,7 +16,7 @@ namespace Motion {
     /// https://github.com/NoelFB/Celeste/blob/master/Source/Player/Player.cs#L2960
     /// </remarks>
     public class Jump: MovementMod {
-        [SerializeField] private JumpTraits traits;
+        [Expandable] public JumpTraits traits;
         private Movement _movement;
         private Timer _timer;
 
