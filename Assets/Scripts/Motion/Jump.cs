@@ -1,57 +1,60 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Util;
 
 namespace Motion {
     /// <summary>
-    /// Adapted from Daniel Fineberg's Jump Implementation:
-    /// https://www.gamasutra.com/blogs/DanielFineberg/20150825/244650/Designing_a_Jump_in_Unity.php
+    /// Handles Jumping for GameObjects     
     /// </summary>
+    /// <remarks>
+    /// Adapted from Celeste's Jump Implementation:
+    /// https://github.com/NoelFB/Celeste/blob/master/Source/Player/Player.cs#L2960
+    /// </remarks>
     public class Jump: MovementMod {
-        
-        private float _jumpVelocity;
+        private Movement _movement;
         private float _timer;
-        private float _jumpTime;
+        private Action _action;
+        private float _continue;
 
-        public void Tick() {
-            if (!isJumping)
-                CancelJump();
-            else if (_timer <= 0)
-                StartJump();
-            else
-                ContinueJump();
-
+        public void Awake() {
+            _movement = GetComponent<Movement>();
+            _timer = 0f;
         }
 
-        public void StartJump() {
-            _timer = jumpTime;
-            Direction = Vector3.up * jumpVel;
-        }
-
-        public void ContinueJump() {
-            velocity = 
-        }
-
-        public void CancelJump() {
+        public void Tick(float velocity, float duration, Action action) {
+            _action = action;
+            if (action == Action.Jumping) {
+                if (_timer <= 0)
+                    StartJump(velocity, duration);                    
+                else
+                    ContinueJump(velocity);
+            } else
+                EndJump();
             
+            _timer -= Time.deltaTime;
+            _timer = _timer.ClampMin(0f);
         }
         
-        public void StartJump(float jumpVelocity, float jumpTime, Action action) {
-            _jumpVelocity = jumpVelocity;
-            _timer = 0;
-            _jumpTime = jumpTime;
-            Direction = Vector3.up * jumpVelocity;
+        private Vector3 StartJump(float velocity, float duration) {
+            _timer = duration;
+            return Vector3.up * velocity;
         }
-
-        public Action Tick(Action action) {
-            if (action == Action.Jumping && _timer < _jumpTime) {
-                float propertionCompleted = _timer / _jumpTime;
-                Direction = Vector3.Lerp(Direction, Vector3.zero, propertionCompleted);
-                _timer += Time.deltaTime;
-                return Action.Jumping;
-            }
+        
+        private Vector3 ContinueJump(float velocity) {
+            float continueVelocity = Math.Min(velocity, _movement.PrevDirection.y);
+            continueVelocity = continueVelocity.ClampMin(0f);
+            _continue = continueVelocity;
+            Direction = Vector3.up * continueVelocity;
+        }
+        
+        private void EndJump() {
             _timer = 0;
             Direction = Vector3.zero;
-            return Action.NotJumping;
+        }
+
+        public override Vector3 Influence(Vector3 direction) {
+            return Vector3.zero;
         }
     }
 }
