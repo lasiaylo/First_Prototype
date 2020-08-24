@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using ScriptableObjects;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,24 +15,18 @@ namespace Motion {
     /// https://github.com/NoelFB/Celeste/blob/master/Source/Player/Player.cs#L2879
     /// </remarks>
     [Serializable]
-    public class LinearAccelerate: MovementMod {
-        protected Vector3 Target = Vector3.zero;
-        private float _acceleration = 0f;
-        private float _deceleration = 0f;
-        private float _maxSpeed = 0f;
-        private bool _isDecelerating = true;
-        public void Tick(Vector3 target, float acceleration, float deceleration, float maxSpeed) {
-            Target = target.normalized * _maxSpeed;
-            _acceleration = acceleration;
-            _deceleration = deceleration;
-            _maxSpeed = maxSpeed;
-        }
+    public class LinearAccelerate : MovementMod {
+        [SerializeField] protected LinearAccelerateTraits traits;
 
-        public override Vector3 Influence(Vector3 direction) {
-            _isDecelerating = direction.magnitude > _maxSpeed && Vector3.Angle(direction, Target) < 90;
-            return direction.magnitude > _maxSpeed && Vector3.Angle(direction, Target ) < 90
-                ? Vector3.MoveTowards(direction, Target, _deceleration * Time.deltaTime)
-                : Vector3.MoveTowards(direction, Target, _acceleration * Time.deltaTime);
+        public override Vector3 Modify(Vector3 direction) {
+            Vector3 target = traits.Target;
+            float acceleration = traits.Acceleration; 
+            float deceleration = traits.Deceleration;
+            float maxSpeed = traits.MaxSpeed;
+            
+            return direction.magnitude > maxSpeed && Vector3.Angle(direction, target) < 90
+                ? Vector3.MoveTowards(direction, target, deceleration * Time.deltaTime)
+                : Vector3.MoveTowards(direction, target, acceleration * Time.deltaTime);
         }
     }
 }
