@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Target: {x: 0, y: 0, z: 0}
   _Acceleration: 221.8
-  _Deceleration: 28.61
-  _MaxSpeed: {x: 2, y: 0, z: 2}
+  _Deceleration: 35.05
+  _MaxSpeed: {x: 10, y: 1, z: 10}

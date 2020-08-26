@@ -21,14 +21,13 @@ namespace Motion {
         [Expandable] public LinearAccelerateTraits traits;
 
         public override Vector3 Modify(Vector3 direction) {
-            Vector3 target = traits.Target;
-            float acceleration = traits.Acceleration; 
-            float deceleration = traits.Deceleration;
-            float maxSpeed = traits.MaxSpeed.magnitude;
-            
-            return direction.magnitude > maxSpeed && Vector3.Angle(direction, target) < 90
-                ? Vector3.MoveTowards(direction, target, deceleration * Time.deltaTime)
-                : Vector3.MoveTowards(direction, target, acceleration * Time.deltaTime);
+            return ShouldDecelerate(direction)
+                ? Vector3.MoveTowards(direction, traits.Target, traits.Deceleration * Time.deltaTime)
+                : Vector3.MoveTowards(direction, traits.Target, traits.Acceleration * Time.deltaTime);
+        }
+
+        protected Boolean ShouldDecelerate(Vector3 direction) {
+            return direction.magnitude > traits.MaxSpeed.magnitude && Vector3.Angle(direction, traits.Target) < 90;
         }
     }
 }

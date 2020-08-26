@@ -31,16 +31,16 @@ namespace Util {
             
         #region Move Towards Plane
 
-        public static Vector3 MoveTowardsXy(this Vector3 val, Vector2 target, float maxDistanceDelta) {
+        public static Vector3 MoveTowardsXy(this Vector3 val, Vector3 target, float maxDistanceDelta) {
             return Vector3.MoveTowards(val, new Vector3(target.x, target.y, val.z), maxDistanceDelta);
         }
 
-        public static Vector3 MoveTowardsXz(this Vector3 val, Vector2 target, float maxDistanceDelta) {
-            return Vector3.MoveTowards(val, new Vector3(target.x, val.y, target.y), maxDistanceDelta);
+        public static Vector3 MoveTowardsXz(this Vector3 val, Vector3 target, float maxDistanceDelta) {
+            return Vector3.MoveTowards(val, new Vector3(target.x, val.y, target.z), maxDistanceDelta);
         }
 
-        public static Vector3 MoveTowardsYz(this Vector3 val, Vector2 target, float maxDistanceDelta) {
-            return Vector3.MoveTowards(val, new Vector3(val.x, target.x, target.y), maxDistanceDelta);
+        public static Vector3 MoveTowardsYz(this Vector3 val, Vector3 target, float maxDistanceDelta) {
+            return Vector3.MoveTowards(val, new Vector3(val.x, target.y, target.y), maxDistanceDelta);
         }
         
         #endregion
