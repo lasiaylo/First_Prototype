@@ -2,20 +2,21 @@
 using System.Security.Cryptography.X509Certificates;
 using Motion;
 using ScriptableObjects;
+using ScriptableObjects.Prototypes;
 using UnityEngine;
 
 namespace States.Player {
     public class JumpState: MovableState {
+        private JumpTraits traits = Resources.Load<JumpTraits>("ScriptableObjects/PlayerJump");
         public JumpState(StateMachine<PlayerController> stateMachine) : base(stateMachine) { }
         public override void Enter(PlayerController owner) { 
-            //Trigger jumping animation
             Debug.Log("JUMPING");
-            // owner.Jump.Tick(_jumpVelocity, _jumpTime, owner.PlayerInputCache.Action);
+            traits.Action = owner.PlayerInputCache.Action;
         }
 
         public override void Tick(PlayerController player) {
             base.Tick(player);
-            // player.Jump.Tick(_jumpVelocity, _jumpTime, player.PlayerInputCache.Action);
+            traits.Action = player.PlayerInputCache.Action;
         }
     }
 }

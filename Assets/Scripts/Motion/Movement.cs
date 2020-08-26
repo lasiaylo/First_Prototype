@@ -13,13 +13,13 @@ namespace Motion {
     /// </remarks>
     [RequireComponent(typeof(CharacterController))]
     public class Movement: MonoBehaviour {
+        [SerializeField] private Vector3 direction;
         [Expandable] public List<MovementMod> modifiers = new List<MovementMod>();
         private CharacterController _controller;
-        private Vector3 _direction;
 
         public Vector3 Direction {
-            get => enabled ? _direction : Vector3.zero;
-            private set => _direction = value;
+            get => enabled ? direction : Vector3.zero;
+            private set => direction = value;
         }
 
         public void Start() {
