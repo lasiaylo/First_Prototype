@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace States {
     public abstract class State: MonoBehaviour {
-        public StateMachine stateMachine { get; set; }
+        public StateMachine StateMachine { get; set; }
 
         public abstract void Enter();
         

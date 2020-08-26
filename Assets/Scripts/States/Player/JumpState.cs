@@ -1,14 +1,12 @@
-﻿using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
-using Motion;
-using ScriptableObjects;
+﻿using Motion;
 using ScriptableObjects.Prototypes;
 using UnityEngine;
+using Util;
 
 namespace States.Player {
-    public class JumpState: MovableState {
+    public class JumpState: AirState {
         public JumpTraits jump;
-        public JumpState(StateMachine stateMachine) : base() { }
+
         public override void Enter() { 
             Debug.Log("JUMPING");
         }

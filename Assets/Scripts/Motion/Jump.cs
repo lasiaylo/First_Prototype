@@ -43,7 +43,7 @@ namespace Motion {
         public override Vector3 Modify(Vector3 direction) {
             _timer.Tick(Time.deltaTime);
             if (traits.Action == Action.Jumping) {
-                return _timer.Remaining <= 0f 
+                return _timer.IsDone() 
                     ? StartJump(direction) 
                     : ContinueJump(direction);
             }

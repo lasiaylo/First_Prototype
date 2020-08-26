@@ -12,7 +12,7 @@ namespace States {
 
         public void Awake() {
             _states = new Dictionary<Type, State>();
-            currentState.stateMachine = this;
+            currentState.StateMachine = this;
         }
 
         public void SetState<T>() where T: State {
@@ -35,7 +35,7 @@ namespace States {
                 return (T) _states[type];
             }
             T state = GetComponent<T>();
-            state.stateMachine = this;
+            state.StateMachine = this;
             _states.Add(type, state);
             return state;
         }

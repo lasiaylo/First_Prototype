@@ -9,7 +9,7 @@ namespace States.Player {
         public override void Tick() {
             base.Tick();
             if (Input.Action == Action.Jumping) {
-                stateMachine.SetState<JumpState>();
+                StateMachine.SetState<JumpState>();
             }
         }
     }                       

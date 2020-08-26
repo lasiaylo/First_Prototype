@@ -7,14 +7,12 @@ namespace States.Player {
     public abstract class MovableState : State {
         public LinearAccelerateTraits linear;
         public GravityTraits gravity;
+        protected CharacterController Controller;
         protected PlayerInputCache Input;
-        protected CharacterController Controller; 
         
-        public void Awake() {
-            Input = GetComponent<PlayerInputCache>();
-            Debug.Log("PLAYER");
-            Debug.Log(Input);
+        public virtual void Awake() {
             Controller = GetComponent<CharacterController>();
+            Input = GetComponent<PlayerInputCache>();
         }
         
         public override void Tick() {

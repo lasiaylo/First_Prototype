@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Util {
@@ -12,7 +13,7 @@ namespace Util {
         // public event Action OnTimerEnd;
 
         public void Tick(float deltaTime) {
-            if (Remaining == 0f) { return; }
+            if (IsDone()) { return; }
             Remaining -= deltaTime;
             CheckForTimerEnd();
         }
@@ -24,6 +25,10 @@ namespace Util {
         public void End() {
             Remaining = 0f;
          // Invoke   
+        }
+
+        public Boolean IsDone() {
+            return Remaining <= 0f;
         }
 
         private void CheckForTimerEnd() {

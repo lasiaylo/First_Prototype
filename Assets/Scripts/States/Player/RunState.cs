@@ -8,7 +8,7 @@ namespace States.Player {
     public class RunState: GroundedState {
         private Movement _movement;
 
-        public void Awake() {
+        public override void Awake() {
             base.Awake();
             _movement = GetComponent<Movement>();
         }
@@ -17,10 +17,10 @@ namespace States.Player {
             Debug.Log("RUNNING");
         }
 
-        public void Tick(PlayerController player) {
+        public override void Tick() {
             base.Tick();
             if (Input.Direction.IsZero() && _movement.Direction.GetXz().IsZero()) {
-                stateMachine.SetState<StandState>();
+                StateMachine.SetState<StandState>();
             }
         }
     }

@@ -11,7 +11,7 @@ namespace States.Player {
         public override void Tick() {
             base.Tick();
             if (Input.Direction != Vector3.zero)
-                stateMachine.SetState<RunState>();
+                StateMachine.SetState<RunState>();
         }
     }
 }
