@@ -22,7 +22,7 @@ namespace Motion {
             private set => direction = value;
         }
 
-        public void Start() {
+        public void Awake() {
             _controller = GetComponent<CharacterController>();
         }
 
@@ -37,9 +37,5 @@ namespace Motion {
         public void Tick() {
             Tick(Time.deltaTime);
         }
-
-        public void AddModifier(MovementMod mod) => modifiers.Add(mod);
-
-        public void RemoveModifier(MovementMod mod) => modifiers.Add(mod);
     }
 }

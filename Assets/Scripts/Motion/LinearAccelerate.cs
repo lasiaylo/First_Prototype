@@ -24,11 +24,11 @@ namespace Motion {
             Vector3 target = traits.Target;
             float acceleration = traits.Acceleration; 
             float deceleration = traits.Deceleration;
-            float maxSpeed = traits.MaxSpeed;
+            float maxSpeed = traits.MaxSpeed.magnitude;
             
             return direction.magnitude > maxSpeed && Vector3.Angle(direction, target) < 90
-                ? Vector3.MoveTowards(direction, target * maxSpeed, deceleration * Time.deltaTime)
-                : Vector3.MoveTowards(direction, target * maxSpeed, acceleration * Time.deltaTime);
+                ? Vector3.MoveTowards(direction, target, deceleration * Time.deltaTime)
+                : Vector3.MoveTowards(direction, target, acceleration * Time.deltaTime);
         }
     }
 }

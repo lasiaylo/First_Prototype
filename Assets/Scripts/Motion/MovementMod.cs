@@ -9,6 +9,5 @@ namespace Motion {
         /// Left in so enable checkbox appears in Inspector
         /// </summary>
         public void OnEnable() { }
-        
     }
 }
