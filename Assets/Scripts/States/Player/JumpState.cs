@@ -7,16 +7,15 @@ using UnityEngine;
 
 namespace States.Player {
     public class JumpState: MovableState {
-        private JumpTraits traits = Resources.Load<JumpTraits>("ScriptableObjects/PlayerJump");
-        public JumpState(StateMachine<PlayerController> stateMachine) : base(stateMachine) { }
-        public override void Enter(PlayerController owner) { 
+        public JumpTraits jump;
+        public JumpState(StateMachine stateMachine) : base() { }
+        public override void Enter() { 
             Debug.Log("JUMPING");
-            traits.Action = owner.PlayerInputCache.Action;
         }
 
-        public override void Tick(PlayerController player) {
-            base.Tick(player);
-            traits.Action = player.PlayerInputCache.Action;
+        public override void Tick() {
+            base.Tick();
+            jump.Action = Input.Action;
         }
     }
 }

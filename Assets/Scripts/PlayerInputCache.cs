@@ -10,13 +10,23 @@ public enum Action: int {
     Jumping,
 }
 public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
-    public Action Action { get; private set; }
-    public Vector3 Direction;
     private InputAction.CallbackContext context;
 
+    [SerializeField] private Action action = Action.NotJumping;
+    [SerializeField] private Vector3 direction = Vector3.zero;
+
+    public Action Action {
+        get => action;
+        private set => action = value;
+    }
+
+    public Vector3 Direction {
+        get => direction;
+        private set => direction = value.normalized;
+
+    }
+
     public void Awake() {
-        Action = Action.NotJumping;
-        Direction = new Vector3();
         _playerInput = new PlayerInput();
         _playerInput.Gameplay.SetCallbacks(this);
     }
@@ -26,7 +36,7 @@ public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
     public void OnMovement(InputAction.CallbackContext context) {
         var input = context.ReadValue<Vector2>();
         this.context = context;
-        Direction = new Vector3(input.x, 0f, input.y).normalized;
+        Direction = new Vector3(input.x, 0f, input.y);
     }
 
     public void OnJump(InputAction.CallbackContext context) {

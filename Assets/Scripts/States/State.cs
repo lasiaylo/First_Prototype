@@ -3,22 +3,19 @@ using UnityEditorInternal;
 using UnityEngine;
 
 namespace States {
-    public abstract class State<T> {
-        protected StateMachine<T> StateMachine { get; private set; }
-        protected State(StateMachine<T> stateMachine) {
-            StateMachine = stateMachine;
-        }
+    public abstract class State: MonoBehaviour {
+        public StateMachine stateMachine { get; set; }
+
+        public abstract void Enter();
         
-        public abstract void Enter(T owner);
+        public abstract void Tick();
         
-        public abstract void Tick(T owner);
-        
-        public abstract void Exit(T owner);
+        public abstract void Exit();
     }
 
     // Might be useless
-    public abstract class PhysicsState<T>: State<T> {
-        protected PhysicsState(StateMachine<T> stateMachine) : base(stateMachine) { }
-        public abstract void FixedUpdate(T owner);
+    public abstract class PhysicsState: State {
+        protected PhysicsState(StateMachine stateMachine) : base() { }
+        public abstract void FixedUpdate();
     }
 }

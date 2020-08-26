@@ -1,22 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using States.Player;
 using UnityEngine;
+using Util.Attributes;
 
 namespace States {
-    public class StateMachine<T> {
-        private State<T> _currentState;
+    public class StateMachine: MonoBehaviour {
+        public State currentState;
         private bool _stateAlreadySet;
-        
-        public void SetState(State<T> state, T owner)  {
-            _currentState?.Exit(owner);
-            _currentState = state;
-            _currentState.Enter(owner);
+        private Dictionary<Type, State> _states;
+
+        public void Awake() {
+            _states = new Dictionary<Type, State>();
+            currentState.stateMachine = this;
+        }
+
+        public void SetState<T>() where T: State {
+            if (_stateAlreadySet) return;
+            T state = GetState<T>();
+            currentState?.Exit();
+            currentState = state;
+            currentState.Enter();
             _stateAlreadySet = true;
         }
 
-        public void Tick(T owner) {
+        public void Tick() {
             _stateAlreadySet = false;
-            _currentState.Tick(owner);
+            currentState.Tick();
+        }
+
+        private T GetState<T>() where T : State {
+            Type type = typeof(T);
+            if (_states.ContainsKey(type)) {
+                return (T) _states[type];
+            }
+            T state = GetComponent<T>();
+            state.stateMachine = this;
+            _states.Add(type, state);
+            return state;
         }
     }
 }

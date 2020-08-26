@@ -1,19 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace States.Player {
-    public class IdleState : GroundedState {
-        public IdleState(StateMachine<PlayerController> stateMachine) : base(stateMachine) { }
-
-        public override void Enter(PlayerController owner) {
+    public class StandState : GroundedState {
+        public override void Enter() {
             // Play Idle Animation   
             Debug.Log("IDLE");
         }
 
-        public override void Tick(PlayerController player) {
-            base.Tick(player);
-            if (player.PlayerInputCache.Direction != Vector3.zero) {
-                StateMachine.SetState(new RunState(StateMachine), player);
-            }
+        public override void Tick() {
+            base.Tick();
+            if (Input.Direction != Vector3.zero)
+                stateMachine.SetState<RunState>();
         }
     }
 }

@@ -1,21 +1,26 @@
 ﻿
 
+using Motion;
 using UnityEngine;
 using Util;
 
 namespace States.Player {
     public class RunState: GroundedState {
-        public RunState(StateMachine<PlayerController> stateMachine) : base(stateMachine) { }
+        private Movement _movement;
+
+        public void Awake() {
+            base.Awake();
+            _movement = GetComponent<Movement>();
+        }
         
-        public override void Enter(PlayerController owner) {
+        public override void Enter() {
             Debug.Log("RUNNING");
         }
 
-        public override void Tick(PlayerController player) {
-            base.Tick(player);
-            if (player.PlayerInputCache.Direction.IsZero() 
-                && player.Movement.Direction.GetXz().IsZero()) { 
-                StateMachine.SetState(new IdleState(StateMachine), player);
+        public void Tick(PlayerController player) {
+            base.Tick();
+            if (Input.Direction.IsZero() && _movement.Direction.GetXz().IsZero()) {
+                stateMachine.SetState<StandState>();
             }
         }
     }

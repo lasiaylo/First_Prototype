@@ -4,20 +4,24 @@ using ScriptableObjects.Prototypes;
 using UnityEngine;
 
 namespace States.Player {
-    public abstract class MovableState : State<PlayerController> {
-        private LinearAccelerateTraits _traits =
-            Resources.Load<LinearAccelerateTraits>("ScriptableObjects/PlayerLinearAccelerate");
-
-        private GravityTraits _gravity = Resources.Load<GravityTraits>("ScriptableObjects/PlayerGravity");
-
-        protected MovableState(StateMachine<PlayerController> stateMachine) : base(stateMachine) { }
-
-        public override void Tick(PlayerController player) {
-            Debug.Log(_gravity);
-            _gravity.IsGrounded = player.Controller.isGrounded;
-            _traits.Target = player.PlayerInputCache.Direction;
+    public abstract class MovableState : State {
+        public LinearAccelerateTraits linear;
+        public GravityTraits gravity;
+        protected PlayerInputCache Input;
+        protected CharacterController Controller; 
+        
+        public void Awake() {
+            Input = GetComponent<PlayerInputCache>();
+            Debug.Log("PLAYER");
+            Debug.Log(Input);
+            Controller = GetComponent<CharacterController>();
+        }
+        
+        public override void Tick() {
+            gravity.IsGrounded = Controller.isGrounded;
+            linear.Target = Input.Direction;
         }
 
-        public override void Exit(PlayerController player) { }
+        public override void Exit() { }
     }
 }
