@@ -1,14 +1,9 @@
 ﻿using System;
-using System.IO;
-using ScriptableObjects;
 using ScriptableObjects.Prototypes;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Util;
 using Util.Attributes;
 
-namespace Motion {
+namespace Translate.Movement {
     /// <summary>
     /// Linearly accelerates owner towards a target direction.
     /// </summary>

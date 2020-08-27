@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Util.Attributes;
 
-namespace Motion {
+namespace Translate.Movement {
     /// <summary>
     /// Handles GameObject Movement. 
     /// </summary>

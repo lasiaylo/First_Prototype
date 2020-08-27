@@ -1,5 +1,4 @@
-﻿using Motion;
-using ScriptableObjects;
+﻿using ScriptableObjects;
 using ScriptableObjects.Prototypes;
 using UnityEngine;
 

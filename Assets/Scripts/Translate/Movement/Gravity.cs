@@ -1,11 +1,10 @@
 ﻿using System;
-using ScriptableObjects;
 using ScriptableObjects.Prototypes;
 using UnityEngine;
 using Util;
 using Util.Attributes;
 
-namespace Motion {
+namespace Translate.Movement {
     [Serializable]
     public class Gravity : MovementMod {
         [Expandable] public GravityTraits traits;

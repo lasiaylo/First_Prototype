@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using ScriptableObjects;
-using ScriptableObjects.Prototypes;
+﻿using ScriptableObjects.Prototypes;
 using UnityEngine;
 using Util;
 using Util.Attributes;
 
-namespace Motion {
+namespace Translate.Movement {
     /// <summary>
     /// Handles Jumping for GameObjects     
     /// </summary>
