@@ -27,7 +27,7 @@ namespace Motion {
         }
 
         protected Boolean ShouldDecelerate(Vector3 direction) {
-            return direction.magnitude > traits.MaxSpeed.magnitude && Vector3.Angle(direction, traits.Target) < 90;
+            return direction.magnitude > traits.MaxSpeed.magnitude && Vector3.Angle(direction, traits.Target) <= 90;
         }
     }
 }

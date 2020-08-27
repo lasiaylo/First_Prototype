@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Util;
 
 namespace ScriptableObjects.Prototypes {
     [CreateAssetMenu]
@@ -11,6 +12,7 @@ namespace ScriptableObjects.Prototypes {
         [NonSerialized] public Action Action;
         [NonSerialized] public float Duration;
         [NonSerialized] public float Speed;
+        [NonSerialized] public Timer Timer;
 
         public void OnAfterDeserialize() {
             Action = action;

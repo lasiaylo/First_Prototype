@@ -7,6 +7,8 @@ namespace States {
         public StateMachine StateMachine { get; set; }
 
         public abstract void Enter();
+
+        public abstract void Transition();
         
         public abstract void Tick();
         

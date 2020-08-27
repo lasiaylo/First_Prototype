@@ -26,6 +26,7 @@ namespace States {
 
         public void Tick() {
             _stateAlreadySet = false;
+            currentState.Transition();
             currentState.Tick();
         }
 

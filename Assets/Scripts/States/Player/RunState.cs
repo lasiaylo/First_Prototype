@@ -17,8 +17,8 @@ namespace States.Player {
             Debug.Log("RUNNING");
         }
 
-        public override void Tick() {
-            base.Tick();
+        public override void Transition() {
+            base.Transition();
             if (Input.Direction.IsZero() && _movement.Direction.GetXz().IsZero()) {
                 StateMachine.SetState<StandState>();
             }

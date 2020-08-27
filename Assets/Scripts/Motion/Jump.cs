@@ -18,15 +18,14 @@ namespace Motion {
     public class Jump: MovementMod {
         [Expandable] public JumpTraits traits;
         private Movement _movement;
-        private Timer _timer;
 
         public void Awake() {
             _movement = GetComponent<Movement>();
-            _timer = new Timer(traits.Duration);
+            traits.Timer = new Timer(traits.Duration);
         }
 
         private Vector3 StartJump(Vector3 direction) {
-            _timer.Reset();
+            traits.Timer.Reset();
             return new Vector3(direction.x, traits.Speed, direction.z);
         }
         
@@ -36,14 +35,14 @@ namespace Motion {
         }
         
         private Vector3 EndJump(Vector3 direction) {
-            _timer.End();
+            traits.Timer.End();
             return direction;
         }
 
         public override Vector3 Modify(Vector3 direction) {
-            _timer.Tick(Time.deltaTime);
+            traits.Timer.Tick(Time.deltaTime);
             if (traits.Action == Action.Jumping) {
-                return _timer.IsDone() 
+                return traits.Timer.IsEnd() 
                     ? StartJump(direction) 
                     : ContinueJump(direction);
             }

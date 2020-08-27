@@ -13,7 +13,7 @@ namespace Util {
         // public event Action OnTimerEnd;
 
         public void Tick(float deltaTime) {
-            if (IsDone()) { return; }
+            if (IsEnd()) { return; }
             Remaining -= deltaTime;
             CheckForTimerEnd();
         }
@@ -27,7 +27,7 @@ namespace Util {
          // Invoke   
         }
 
-        public Boolean IsDone() {
+        public Boolean IsEnd() {
             return Remaining <= 0f;
         }
 

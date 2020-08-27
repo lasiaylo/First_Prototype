@@ -6,8 +6,7 @@ namespace States.Player {
             
         }
 
-        public override void Tick() {
-            base.Tick();
+        public override void Transition() {
             if (Input.Action == Action.Jumping) {
                 StateMachine.SetState<JumpState>();
             }

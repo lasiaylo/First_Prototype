@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerJump
   m_EditorClassIdentifier: 
   action: 0
-  duration: 1
+  duration: 0.01
   speed: 14.2

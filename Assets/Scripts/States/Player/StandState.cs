@@ -8,8 +8,8 @@ namespace States.Player {
             Debug.Log("IDLE");
         }
 
-        public override void Tick() {
-            base.Tick();
+        public override void Transition() {
+            base.Transition();
             if (Input.Direction != Vector3.zero)
                 StateMachine.SetState<RunState>();
         }

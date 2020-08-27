@@ -9,9 +9,8 @@ namespace States.Player {
             base.Awake();
             Movement = GetComponent<Movement>();
         }
-        
-        public override void Tick() {
-            base.Tick();
+
+        public override void Transition() {
             if (Controller.isGrounded) {
                 if (Movement.Direction.GetXz().IsZero()) {
                     StateMachine.SetState<StandState>();
@@ -19,11 +18,9 @@ namespace States.Player {
                     StateMachine.SetState<RunState>();
                 }
             }
-
             if (Movement.Direction.y <= 0) {
                 StateMachine.SetState<FallState>();
             }
         }
-
     }
 }
