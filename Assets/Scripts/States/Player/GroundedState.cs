@@ -10,9 +10,7 @@ namespace States.Player {
         }
 
         public override void Transition() {
-            Debug.Log("CHECK");
-            if (Input.Action == Action.StartJump) {
-                Debug.Log("WOWEE");
+            if (Input.Action == Action.ContinueJump) {
                 StateMachine.SetState<JumpState>();
             }
 

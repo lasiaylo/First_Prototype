@@ -37,17 +37,9 @@ public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        Debug.Log("THIS is reidc");
-        if (context.phase == InputActionPhase.Started) {
-            Debug.Log("WHOAH122");
-        }
-        if (context.started) {
-            Debug.Log("WHOAH");
-            Action = Action.StartJump;
-        } else {
-            Debug.Log("WHYYYYY");
-            Action = Action.NotJumping;
-        }
+        Action = context.performed
+            ? Action.ContinueJump
+            : Action.NotJumping;
     }
 
     public void OnEnable() {

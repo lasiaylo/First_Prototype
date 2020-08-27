@@ -26,8 +26,8 @@ namespace States {
 
         public void Tick() {
             _stateAlreadySet = false;
-            currentState.Transition();
             currentState.Tick();
+            currentState.Transition();
         }
 
         private T GetState<T>() where T : State {

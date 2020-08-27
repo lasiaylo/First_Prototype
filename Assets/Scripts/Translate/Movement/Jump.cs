@@ -22,19 +22,19 @@ namespace Translate.Movement {
 
         private Vector3 StartJump(Vector3 direction) {
             traits.Timer.Reset();
-            // Debug.Log("START");
+            Debug.Log("START");
             return new Vector3(direction.x, traits.Speed, direction.z);
         }
         
         private Vector3 ContinueJump(Vector3 direction) {
-            // Debug.Log("CONTINUING");
+            Debug.Log("CONTINUING");
             traits.Timer.Tick(Time.deltaTime);
-            float continueVelocity = Mathf.Min(traits.Speed, _movement.Direction.y).ClampMin(0f);
+            float continueVelocity = Mathf.Min(traits.Speed, _movement.Direction.y);
             return new Vector3(direction.x, continueVelocity, direction.z);
         }
         
         private Vector3 EndJump(Vector3 direction) {
-            // Debug.Log("END");
+            Debug.Log("END");
             traits.Timer.End();
             return direction;
         }
@@ -44,10 +44,9 @@ namespace Translate.Movement {
                 return StartJump(direction);
             }
 
-            if (traits.Action == Action.ContinueJump && traits.Timer.IsEnd()) { 
+            if (traits.Action == Action.ContinueJump && !traits.Timer.IsEnd()) { 
                 return ContinueJump(direction);
             }
-
             return EndJump(direction);
         }
     }

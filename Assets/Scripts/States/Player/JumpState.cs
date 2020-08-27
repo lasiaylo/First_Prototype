@@ -6,8 +6,8 @@ namespace States.Player {
     public class JumpState: AirState {
         public JumpTraits jump;
 
-        public override void Enter() { 
-            Debug.Log("JUMPING");
+        public override void Enter() {
+            jump.Action = Action.StartJump;
         }
 
         public override void Transition() {
