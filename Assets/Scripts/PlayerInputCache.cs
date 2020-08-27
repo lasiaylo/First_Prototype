@@ -11,8 +11,6 @@ public enum Action: int {
     StartJump,
 }
 public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
-    private InputAction.CallbackContext context;
-
     [SerializeField] private Action action = Action.NotJumping;
     [SerializeField] private Vector3 direction = Vector3.zero;
 
@@ -35,7 +33,6 @@ public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
 
     public void OnMovement(InputAction.CallbackContext context) {
         var input = context.ReadValue<Vector2>();
-        this.context = context;
         Direction = new Vector3(input.x, 0f, input.y);
     }
 
