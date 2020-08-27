@@ -7,7 +7,8 @@ using UnityEngine.Serialization;
 [Serializable]
 public enum Action: int {
     NotJumping,
-    Jumping,
+    ContinueJump,
+    StartJump,
 }
 public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
     private InputAction.CallbackContext context;
@@ -23,7 +24,6 @@ public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
     public Vector3 Direction {
         get => direction;
         private set => direction = value.normalized;
-
     }
 
     public void Awake() {
@@ -40,7 +40,17 @@ public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        Action = context.performed ? Action.Jumping : Action.NotJumping;
+        Debug.Log("THIS is reidc");
+        if (context.phase == InputActionPhase.Started) {
+            Debug.Log("WHOAH122");
+        }
+        if (context.started) {
+            Debug.Log("WHOAH");
+            Action = Action.StartJump;
+        } else {
+            Debug.Log("WHYYYYY");
+            Action = Action.NotJumping;
+        }
     }
 
     public void OnEnable() {

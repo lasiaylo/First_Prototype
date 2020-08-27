@@ -3,9 +3,10 @@ using UnityEngine;
 
 namespace Util {
 // https://github.com/DapperDino/Dapper-Tools/blob/master/Runtime/Components/Timers/Timer.cs
+    [Serializable]
     public class Timer {
-        public float Duration { get; set; }
-        public float Remaining { get; private set; }
+        public float Duration;
+        public float Remaining;
         
 
         public Timer(float duration) => Duration = Remaining = duration;

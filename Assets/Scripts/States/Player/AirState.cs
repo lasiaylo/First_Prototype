@@ -1,7 +1,11 @@
 ﻿using Translate.Movement;
+using UnityEngine;
 using Util;
 
+
 namespace States.Player {
+    [RequireComponent(typeof(StandState))]
+    [RequireComponent(typeof(RunState))]
     public abstract class AirState: MovableState {
         protected Movement Movement;
         

@@ -22,26 +22,32 @@ namespace Translate.Movement {
 
         private Vector3 StartJump(Vector3 direction) {
             traits.Timer.Reset();
+            // Debug.Log("START");
             return new Vector3(direction.x, traits.Speed, direction.z);
         }
         
         private Vector3 ContinueJump(Vector3 direction) {
+            // Debug.Log("CONTINUING");
+            traits.Timer.Tick(Time.deltaTime);
             float continueVelocity = Mathf.Min(traits.Speed, _movement.Direction.y).ClampMin(0f);
             return new Vector3(direction.x, continueVelocity, direction.z);
         }
         
         private Vector3 EndJump(Vector3 direction) {
+            // Debug.Log("END");
             traits.Timer.End();
             return direction;
         }
 
         public override Vector3 Modify(Vector3 direction) {
-            traits.Timer.Tick(Time.deltaTime);
-            if (traits.Action == Action.Jumping) {
-                return traits.Timer.IsEnd() 
-                    ? StartJump(direction) 
-                    : ContinueJump(direction);
+            if (traits.Action == Action.StartJump) {
+                return StartJump(direction);
             }
+
+            if (traits.Action == Action.ContinueJump && traits.Timer.IsEnd()) { 
+                return ContinueJump(direction);
+            }
+
             return EndJump(direction);
         }
     }

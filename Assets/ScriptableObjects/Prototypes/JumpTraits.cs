@@ -12,7 +12,7 @@ namespace ScriptableObjects.Prototypes {
         [NonSerialized] public Action Action;
         [NonSerialized] public float Duration;
         [NonSerialized] public float Speed;
-        [NonSerialized] public Timer Timer;
+        public Timer Timer;
 
         public void OnAfterDeserialize() {
             Action = action;
