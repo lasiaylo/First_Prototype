@@ -12,7 +12,7 @@ namespace States.Player {
 
         public override void Transition() {
             base.Transition();
-            if (jump.Timer.IsEnd() || Movement.Direction.y <= 0) {
+            if (jump.timer.IsEnd() || Movement.Direction.y <= 0) {
                 StateMachine.SetState<FallState>();
             }
         }

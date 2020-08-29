@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   action: 0
   duration: 1
-  speed: 10
-  continueSpeed: 10
-  threshold: 10
-  Timer:
-    Duration: 0.5
+  speed: 9.42
+  timer:
+    Duration: 0
     Remaining: 0

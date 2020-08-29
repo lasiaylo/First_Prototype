@@ -7,16 +7,19 @@ using Util.Attributes;
 namespace Translate.Movement {
     [Serializable]
     public class Gravity : MovementMod {
-        [Expandable] public GravityTraits GravityTraits;
-        [Expandable] public JumpTraits JumpTraits;
+        [Expandable] public GravityTraits gravityTraits;
 
         public override Vector3 Modify(Vector3 direction) {
-            float speed = traits.IsGrounded ? traits.GroundGravity : traits.Gravity;
-            float arcMult = (Math.Abs(direction.y) < traits.ArcThreshold) ? traits.ArcMult : 1;
+            float speed = gravityTraits.IsGrounded ? gravityTraits.GroundGravity : gravityTraits.Gravity;
+            float arcMult = ShouldArc(direction) ? gravityTraits.ArcMult : 1;
             return direction.MoveTowardsY(
-                -traits.MaxFallSpeed, 
+                -gravityTraits.MaxFallSpeed, 
                 speed * arcMult * Time.deltaTime
             );
+        }
+
+        private Boolean ShouldArc(Vector3 direction) {
+            return (Math.Abs(direction.y) < gravityTraits.ArcThreshold);
         }
     }
 }

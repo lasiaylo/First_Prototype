@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerLinearAccelerate
   m_EditorClassIdentifier: 
   _Target: {x: 0, y: 0, z: 0}
-  _Acceleration: 52.5
-  _Deceleration: -20
+  _Acceleration: 45
+  _Deceleration: 90
   _MaxSpeed: {x: 10, y: 1, z: 10}

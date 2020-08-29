@@ -1,6 +1,7 @@
 ﻿using System;
 using ScriptableObjects.Prototypes;
 using UnityEngine;
+using Util;
 using Util.Attributes;
 
 namespace Translate.Movement {
@@ -14,15 +15,16 @@ namespace Translate.Movement {
     [Serializable]
     public class LinearAccelerate : MovementMod {
         [Expandable] public LinearAccelerateTraits traits;
+        public bool decelerate;
 
         public override Vector3 Modify(Vector3 direction) {
-            return ShouldDecelerate(direction)
-                ? Vector3.MoveTowards(direction, traits.Target, traits.Deceleration * Time.deltaTime)
-                : Vector3.MoveTowards(direction, traits.Target, traits.Acceleration * Time.deltaTime);
+            decelerate = ShouldAccelerate(direction);
+            float speed = ShouldAccelerate(direction) ? traits.Acceleration : traits.Deceleration;
+            return Vector3.MoveTowards(direction, traits.Target, speed * Time.deltaTime);
         }
 
-        protected Boolean ShouldDecelerate(Vector3 direction) {
-            return direction.magnitude > traits.MaxSpeed.magnitude && Vector3.Angle(direction, traits.Target) <= 90;
+        protected bool ShouldAccelerate(Vector3 direction) {
+            return  !traits.Target.IsZero() && Vector3.Angle(direction.GetXz(), traits.Target.GetXz()) <= 90;
         }
     }
 }
