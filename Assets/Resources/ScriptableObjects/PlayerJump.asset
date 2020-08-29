@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: PlayerJump
   m_EditorClassIdentifier: 
   action: 0
-  duration: 0.01
-  speed: 8
+  duration: 1
+  speed: 10
+  continueSpeed: 10
+  threshold: 10
   Timer:
-    Duration: 0.3
+    Duration: 0.5
     Remaining: 0

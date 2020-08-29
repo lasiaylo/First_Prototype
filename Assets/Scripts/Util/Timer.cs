@@ -7,7 +7,6 @@ namespace Util {
     public class Timer {
         public float Duration;
         public float Remaining;
-        
 
         public Timer(float duration) => Duration = Remaining = duration;
 

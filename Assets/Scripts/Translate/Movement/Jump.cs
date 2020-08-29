@@ -1,4 +1,5 @@
-﻿using ScriptableObjects.Prototypes;
+﻿using System;
+using ScriptableObjects.Prototypes;
 using UnityEngine;
 using Util;
 using Util.Attributes;
@@ -25,18 +26,19 @@ namespace Translate.Movement {
             Debug.Log("START");
             return new Vector3(direction.x, traits.Speed, direction.z);
         }
-        
+
         private Vector3 ContinueJump(Vector3 direction) {
             Debug.Log("CONTINUING");
             traits.Timer.Tick(Time.deltaTime);
-            float continueVelocity = Mathf.Min(traits.Speed, _movement.Direction.y);
-            return new Vector3(direction.x, continueVelocity, direction.z);
+            return Math.Abs(direction.y) < traits.Threshold
+                ? direction.MoveTowardsY(direction.y + 100, traits.ContinueSpeed * Time.deltaTime)
+                : direction;
         }
         
         private Vector3 EndJump(Vector3 direction) {
-            Debug.Log("END");
             traits.Timer.End();
             return direction;
+            // return new Vector3(direction.x, direction.y.ClampMax(0f), direction.z);
         }
 
         public override Vector3 Modify(Vector3 direction) {
@@ -44,7 +46,7 @@ namespace Translate.Movement {
                 return StartJump(direction);
             }
 
-            if (traits.Action == Action.ContinueJump && !traits.Timer.IsEnd()) { 
+            if (traits.Action == Action.ContinueJump) {
                 return ContinueJump(direction);
             }
             return EndJump(direction);
