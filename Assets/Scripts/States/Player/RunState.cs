@@ -17,7 +17,7 @@ namespace States.Player {
 
         public override void Transition() {
             base.Transition();
-            if (Input.Direction.IsZero() && _movement.Direction.GetXz().IsZero()) {
+            if (Input.Direction.IsZero() && _movement.Value.GetXz().IsZero()) {
                 StateMachine.SetState<StandState>();
             }
         }

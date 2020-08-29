@@ -12,7 +12,7 @@ namespace Translate.Movement {
     /// Adapted from Celeste's Jump Implementation:
     /// https://github.com/NoelFB/Celeste/blob/master/Source/Player/Player.cs#L2960
     /// </remarks>
-    public class Jump: MovementMod {
+    public class Jump: Mod<Vector3> {
         [Expandable] public JumpTraits jumpTraits;
         private Movement _movement;
 
@@ -28,7 +28,7 @@ namespace Translate.Movement {
 
         private Vector3 ContinueJump(Vector3 direction) {
             jumpTraits.timer.Tick(Time.deltaTime);
-            float continueVelocity = Mathf.Min(jumpTraits.Speed, _movement.Direction.y);
+            float continueVelocity = Mathf.Min(jumpTraits.Speed, direction.y);
             return new Vector3(direction.x, continueVelocity, direction.z);
         }
         

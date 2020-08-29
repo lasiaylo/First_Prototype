@@ -16,13 +16,13 @@ namespace States.Player {
 
         public override void Transition() {
             if (Controller.isGrounded) {
-                if (Movement.Direction.GetXz().IsZero()) {
+                if (Movement.Value.GetXz().IsZero()) {
                     StateMachine.SetState<StandState>();
                 } else {
                     StateMachine.SetState<RunState>();
                 }
             }
-            if (Movement.Direction.y <= 0) {
+            if (Movement.Value.y <= 0) {
                 StateMachine.SetState<FallState>();
             }
         }

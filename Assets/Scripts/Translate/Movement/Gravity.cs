@@ -6,7 +6,7 @@ using Util.Attributes;
 
 namespace Translate.Movement {
     [Serializable]
-    public class Gravity : MovementMod {
+    public class Gravity : Mod<Vector3> {
         [Expandable] public GravityTraits gravityTraits;
 
         public override Vector3 Modify(Vector3 direction) {

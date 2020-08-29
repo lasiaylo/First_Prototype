@@ -13,7 +13,7 @@ namespace Translate.Movement {
     /// https://github.com/NoelFB/Celeste/blob/master/Source/Player/Player.cs#L2879
     /// </remarks>
     [Serializable]
-    public class LinearAccelerate : MovementMod {
+    public class LinearAccelerate : Mod<Vector3> {
         [Expandable] public LinearAccelerateTraits traits;
         public bool decelerate;
 
