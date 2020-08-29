@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ScriptableObjects.Prototypes
 {
     [CreateAssetMenu]
-    public class LinearAccelerateTraits : ScriptableObject, ISerializationCallbackReceiver
+    public class LinearAccelerateTraits : LockedScriptableObject
     {
         [SerializeField] private Vector3 _Target;
         [SerializeField] private float _Acceleration;
@@ -35,7 +35,5 @@ namespace ScriptableObjects.Prototypes
             Deceleration = _Deceleration;
             MaxSpeed = _MaxSpeed;
         }
-
-        public void OnBeforeSerialize() {}
     }
 }
