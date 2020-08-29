@@ -38,15 +38,15 @@ namespace Translate.Movement {
             // return new Vector3(direction.x, direction.y.ClampMax(0f), direction.z);
         }
 
-        public override Vector3 Modify(Vector3 direction) {
+        public override Vector3 Modify(Vector3 val) {
             if (jumpTraits.Action == Action.StartJump) {
-                return StartJump(direction);
+                return StartJump(val);
             }
 
             if (jumpTraits.Action == Action.ContinueJump) {
-                return ContinueJump(direction);
+                return ContinueJump(val);
             }
-            return EndJump(direction);
+            return EndJump(val);
         }
     }
 }

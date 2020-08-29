@@ -17,10 +17,10 @@ namespace Translate.Movement {
         [Expandable] public LinearAccelerateTraits traits;
         public bool decelerate;
 
-        public override Vector3 Modify(Vector3 direction) {
-            decelerate = ShouldAccelerate(direction);
-            float speed = ShouldAccelerate(direction) ? traits.Acceleration : traits.Deceleration;
-            return Vector3.MoveTowards(direction, traits.Target, speed * Time.deltaTime);
+        public override Vector3 Modify(Vector3 val) {
+            decelerate = ShouldAccelerate(val);
+            float speed = ShouldAccelerate(val) ? traits.Acceleration : traits.Deceleration;
+            return Vector3.MoveTowards(val, traits.Target, speed * Time.deltaTime);
         }
 
         protected bool ShouldAccelerate(Vector3 direction) {

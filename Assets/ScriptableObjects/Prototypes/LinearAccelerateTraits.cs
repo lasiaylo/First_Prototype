@@ -1,15 +1,15 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ScriptableObjects.Prototypes
 {
     [CreateAssetMenu]
-    public class LinearAccelerateTraits : LockedScriptableObject
-    {
-        [SerializeField] private Vector3 _Target;
-        [SerializeField] private float _Acceleration;
-        [SerializeField] private float _Deceleration;
-        [SerializeField] private Vector3 _MaxSpeed;
+    public class LinearAccelerateTraits : LockedScriptableObject {
+        [SerializeField] private Vector3 target;
+        [SerializeField] private float acceleration;
+        [SerializeField] private float deceleration;
+        [SerializeField] private Vector3 maxSpeed;
         
         private Vector3 _runtimeTarget;
         private Vector3 _runtimeMaxSpeed;
@@ -29,11 +29,11 @@ namespace ScriptableObjects.Prototypes
             }
         }
         
-        public void OnAfterDeserialize() {
-            Target = _Target;
-            Acceleration = _Acceleration;
-            Deceleration = _Deceleration;
-            MaxSpeed = _MaxSpeed;
+        public override void OnAfterDeserialize() {
+            Target = target;
+            Acceleration = acceleration;
+            Deceleration = deceleration;
+            MaxSpeed = maxSpeed;
         }
     }
 }

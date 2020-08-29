@@ -4,7 +4,7 @@ using Util;
 
 namespace ScriptableObjects.Prototypes {
     [CreateAssetMenu]
-    public class JumpTraits : ScriptableObject, ISerializationCallbackReceiver {
+    public class JumpTraits : LockedScriptableObject {
         [SerializeField] private Action action;
         [SerializeField] private float duration;
         [SerializeField] private float speed;
@@ -15,12 +15,10 @@ namespace ScriptableObjects.Prototypes {
         
         public Timer timer;
 
-        public void OnAfterDeserialize() {
+        public override void OnAfterDeserialize() {
             Action = action;
             Duration = duration;
             Speed = speed;
         }
-        
-        public void OnBeforeSerialize() { }
     }    
 }

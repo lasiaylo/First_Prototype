@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ScriptableObjects.Prototypes
 {
     [CreateAssetMenu]
-    public class GravityTraits : ScriptableObject, ISerializationCallbackReceiver {
+    public class GravityTraits : LockedScriptableObject {
         [SerializeField] private float gravity;
         [SerializeField] private float groundGravity;
         [SerializeField] private float arcMult;
@@ -17,9 +17,9 @@ namespace ScriptableObjects.Prototypes
         [NonSerialized] public float ArcMult;
         [NonSerialized] public float ArcThreshold;
         [NonSerialized] public float MaxFallSpeed;
+        [NonSerialized] public bool IsGrounded;
 
-        public void OnAfterDeserialize()
-        {
+        public override void OnAfterDeserialize() {
             Gravity = gravity;
             GroundGravity = groundGravity;
             ArcMult = arcMult;
@@ -27,9 +27,5 @@ namespace ScriptableObjects.Prototypes
             MaxFallSpeed = maxFallSpeed;
             IsGrounded = isGrounded;
         }
-
-        [NonSerialized] public bool IsGrounded;
-
-        public void OnBeforeSerialize() { }
     }
 }

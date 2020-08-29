@@ -9,10 +9,10 @@ namespace Translate.Movement {
     public class Gravity : Mod<Vector3> {
         [Expandable] public GravityTraits gravityTraits;
 
-        public override Vector3 Modify(Vector3 direction) {
+        public override Vector3 Modify(Vector3 val) {
             float speed = gravityTraits.IsGrounded ? gravityTraits.GroundGravity : gravityTraits.Gravity;
-            float arcMult = ShouldArc(direction) ? gravityTraits.ArcMult : 1;
-            return direction.MoveTowardsY(
+            float arcMult = ShouldArc(val) ? gravityTraits.ArcMult : 1;
+            return val.MoveTowardsY(
                 -gravityTraits.MaxFallSpeed, 
                 speed * arcMult * Time.deltaTime
             );
