@@ -14,13 +14,12 @@ namespace States.Player {
         }
         
         public override void Transition() {
-            if (Controller.isGrounded) {
-                if (Movement.Value.GetXz().IsZero()) {
-                    StateMachine.SetState<StandState>();
-                } else {
-                    StateMachine.SetState<RunState>();
-                }
-            } 
+            if (!Controller.isGrounded) return;
+            if (Movement.Value.GetXz().IsZero()) {
+                StateMachine.SetState<StandState>();
+            } else {
+                StateMachine.SetState<RunState>();
+            }
         }
     }
 }

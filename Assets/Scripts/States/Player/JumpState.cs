@@ -1,5 +1,5 @@
 ﻿using ScriptableObjects.Prototypes;
-using ScriptableObjects.Prototypes.Traits;
+using ScriptableObjects.Prototypes.Trait;
 using UnityEngine;
 using Util;
 

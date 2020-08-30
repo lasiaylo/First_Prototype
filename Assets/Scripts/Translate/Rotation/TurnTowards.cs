@@ -1,6 +1,5 @@
 ﻿using ScriptableObjects.Prototypes;
-using ScriptableObjects.Prototypes.Traits;
-using ScriptableObjects.Prototypes.Variables;
+using ScriptableObjects.Prototypes.Variable;
 using Translate.Movement;
 using UnityEngine;
 using Util;

@@ -1,6 +1,6 @@
 ﻿using System;
 using ScriptableObjects.Prototypes;
-using ScriptableObjects.Prototypes.Variables;
+using ScriptableObjects.Prototypes.Variable;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Util.Attributes;
@@ -13,6 +13,7 @@ public enum Action: int {
 }
 public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
     [Expandable] public Vector3Variable direction;
+    [Expandable] public Phase phase;
     [SerializeField] private Action action = Action.NotJumping;
 
     public Action Action {

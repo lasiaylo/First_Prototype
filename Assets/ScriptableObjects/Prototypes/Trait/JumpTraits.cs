@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Util;
 
-namespace ScriptableObjects.Prototypes.Traits {
+namespace ScriptableObjects.Prototypes.Trait {
     [CreateAssetMenu(fileName = "JumpTraits", menuName = "Traits/Jump", order = 0)]
     public class JumpTraits : DefaultScriptableObject {
         [SerializeField] private Action action;

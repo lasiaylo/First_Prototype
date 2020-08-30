@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ScriptableObjects.Prototypes.Traits {
+namespace ScriptableObjects.Prototypes.Trait {
     [CreateAssetMenu(fileName = "LinearAccelerateTraits", menuName = "Traits/Linear Accelerate", order = 0)]
 
     public class LinearAccelerateTraits : DefaultScriptableObject {

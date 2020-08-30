@@ -1,6 +1,8 @@
 ﻿using ScriptableObjects;
 using ScriptableObjects.Prototypes;
-using ScriptableObjects.Prototypes.Traits;
+using ScriptableObjects.Prototypes.Trait;
+using ScriptableObjects.Prototypes.Variable;
+using ScriptableObjects.Prototypes.Wrapper;
 using UnityEngine;
 using Util.Attributes;
 
@@ -8,6 +10,7 @@ namespace States.Player {
     public abstract class MovableState : State {
         [Expandable] public WLinearAccelerateTraits playerMovement;
         [Expandable] public LinearAccelerateTraits movement;
+        [Expandable] public Vector3Variable input;
         protected CharacterController Controller;
         protected PlayerInputCache Input;
 
@@ -17,8 +20,7 @@ namespace States.Player {
         }
         
         public override void Enter() {
-            Debug.Log(movement);
-            playerMovement.obj = movement;
+            playerMovement.val = movement;
         }
         
         public override void Exit() { }
