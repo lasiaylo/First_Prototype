@@ -11,15 +11,15 @@ namespace States.Player {
             _movement = GetComponent<Movement>();
         }
         
-        public override void Enter() {
-            Debug.Log("RUNNING");
-        }
-
         public override void Transition() {
             base.Transition();
             if (Input.Direction.IsZero() && _movement.Value.GetXz().IsZero()) {
                 StateMachine.SetState<StandState>();
             }
+        }
+
+        public override void Tick() {
+         // Throw event   
         }
     }
 }

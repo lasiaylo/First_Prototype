@@ -4,8 +4,8 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - linear: {fileID: 11400000, guid: ca728dddcd87a7f4f996e3c209fe33f3, type: 2}
-  - gravity: {fileID: 11400000, guid: 15e26e9b44a83db45aa36f9341a7c5a5, type: 2}
+  - playerMovement: {fileID: 11400000, guid: a3a0f8014d9454f069362e9817222b97, type: 2}
+  - movement: {fileID: 11400000, guid: faec6171331d33e4882711f23f804612, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -4,7 +4,7 @@ using Util;
 
 namespace ScriptableObjects.Prototypes {
     [CreateAssetMenu]
-    public class JumpTraits : LockedScriptableObject {
+    public class JumpTraits : DefaultScriptableObject {
         [SerializeField] private Action action;
         [SerializeField] private float duration;
         [SerializeField] private float speed;

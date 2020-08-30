@@ -7,6 +7,7 @@ namespace States.Player {
         public JumpTraits jump;
 
         public override void Enter() {
+            base.Enter();
             jump.Action = Action.StartJump;
         }
 
@@ -18,7 +19,6 @@ namespace States.Player {
         }
 
         public override void Tick() {
-            base.Tick();
             jump.Action = Input.Action;
         }
 

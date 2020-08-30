@@ -1,8 +1,8 @@
 ﻿using System;
+using ScriptableObjects.Prototypes;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
+using Util.Attributes;
 
 [Serializable]
 public enum Action: int {
@@ -11,8 +11,8 @@ public enum Action: int {
     StartJump,
 }
 public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
+    [Expandable] public Vector3Variable direction;
     [SerializeField] private Action action = Action.NotJumping;
-    [SerializeField] private Vector3 direction = Vector3.zero;
 
     public Action Action {
         get => action;
@@ -20,8 +20,8 @@ public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
     }
 
     public Vector3 Direction {
-        get => direction;
-        private set => direction = value.normalized;
+        get => direction.val;
+        private set => direction.val = value.normalized;
     }
 
     public void Awake() {

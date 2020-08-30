@@ -1,10 +1,9 @@
-﻿using Translate.Movement;
+﻿using ScriptableObjects.Prototypes;
+using Translate.Movement;
 using UnityEngine;
 
 namespace States.Player {
     public abstract class GroundedState : MovableState {
-        protected Movement Movement;
-
         public override void Transition() {
             if (Input.Action == Action.ContinueJump) {
                 StateMachine.SetState<JumpState>();

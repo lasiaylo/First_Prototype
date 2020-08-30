@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace ScriptableObjects.Prototypes {
-    public class Wrapper<T> : LockedScriptableObject where T: ScriptableObject {
+    public class Wrapper<T> : DefaultScriptableObject where T: ScriptableObject {
         [SerializeField] private T defaultObj;
         public T obj;
 

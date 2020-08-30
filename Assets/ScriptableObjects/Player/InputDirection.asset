@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c149b7f07ea541bebcbd4ccc6e5fb402, type: 3}
-  m_Name: PlayerLinearAccelerate
+  m_Script: {fileID: 11500000, guid: e0c152f972044637abcc80b1cf0375a6, type: 3}
+  m_Name: InputDirection
   m_EditorClassIdentifier: 
-  _Target: {x: 0, y: 0, z: 0}
-  _Acceleration: 45
-  _Deceleration: 90
-  _MaxSpeed: {x: 10, y: 1, z: 10}
+  val: {x: 0, y: 0, z: 0}
+  Val: {x: 0, y: 0, z: 0}

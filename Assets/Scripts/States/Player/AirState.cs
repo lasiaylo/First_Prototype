@@ -1,11 +1,10 @@
-﻿using Translate.Movement;
+﻿using ScriptableObjects.Prototypes;
+using Translate.Movement;
 using UnityEngine;
 using Util;
 
 
 namespace States.Player {
-    [RequireComponent(typeof(StandState))]
-    [RequireComponent(typeof(RunState))]
     public abstract class AirState: MovableState {
         protected Movement Movement;
         
@@ -13,7 +12,7 @@ namespace States.Player {
             base.Awake();
             Movement = GetComponent<Movement>();
         }
-
+        
         public override void Transition() {
             if (Controller.isGrounded) {
                 if (Movement.Value.GetXz().IsZero()) {
@@ -21,10 +20,7 @@ namespace States.Player {
                 } else {
                     StateMachine.SetState<RunState>();
                 }
-            }
-            if (Movement.Value.y <= 0) {
-                StateMachine.SetState<FallState>();
-            }
+            } 
         }
     }
 }

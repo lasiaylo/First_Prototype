@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ScriptableObjects.Prototypes {
     [CreateAssetMenu]
-    public class TurnTraits : LockedScriptableObject {
+    public class TurnTraits : DefaultScriptableObject {
         [SerializeField] private float turnSpeed;
         [SerializeField] private Vector3 direction;
 

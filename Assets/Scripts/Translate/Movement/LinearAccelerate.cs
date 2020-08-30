@@ -15,16 +15,21 @@ namespace Translate.Movement {
     [Serializable]
     public class LinearAccelerate : Mod<Vector3> {
         [Expandable] public WLinearAccelerateTraits traits;
-        public bool decelerate;
 
-        public override Vector3 Modify(Vector3 val) {
-            decelerate = ShouldAccelerate(val);
-            float speed = ShouldAccelerate(val) ? traits.obj.Acceleration : traits.obj.Deceleration;
-            return Vector3.MoveTowards(val, traits.obj.Target, speed * Time.deltaTime);
+        [Expandable] public Vector3Variable input;
+
+        protected Vector3 Target {
+            get => Vector3.Scale(input.val, traits.obj.MaxSpeed);
         }
 
-        protected bool ShouldAccelerate(Vector3 direction) {
-            return  !traits.obj.Target.IsZero() && Vector3.Angle(direction.GetXz(), traits.obj.Target.GetXz()) <= 90;
+        public override Vector3 Modify(Vector3 val) {
+            return Vector3.MoveTowards(val, Target, Speed(val) * Time.deltaTime);
+        }
+
+        protected float Speed(Vector3 val) {
+            return  !input.val.IsZero() && Vector3.Angle(val.GetXz(), input.val.GetXz()) <= 90
+                ? traits.obj.Acceleration 
+                : traits.obj.Deceleration;
         }
     }
 }

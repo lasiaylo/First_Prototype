@@ -1,24 +1,25 @@
 ﻿using ScriptableObjects;
 using ScriptableObjects.Prototypes;
 using UnityEngine;
+using Util.Attributes;
 
 namespace States.Player {
     public abstract class MovableState : State {
-        public LinearAccelerateTraits linear;
-        public GravityTraits gravity;
+        [Expandable] public WLinearAccelerateTraits playerMovement;
+        [Expandable] public LinearAccelerateTraits movement;
         protected CharacterController Controller;
         protected PlayerInputCache Input;
-        
+
         public virtual void Awake() {
             Controller = GetComponent<CharacterController>();
             Input = GetComponent<PlayerInputCache>();
         }
         
-        public override void Tick() {
-            gravity.IsGrounded = Controller.isGrounded;
-            linear.Target = Input.Direction;
+        public override void Enter() {
+            Debug.Log(movement);
+            playerMovement.obj = movement;
         }
-
+        
         public override void Exit() { }
     }
 }
