@@ -1,5 +1,6 @@
 ﻿using System;
 using ScriptableObjects.Prototypes;
+using ScriptableObjects.Prototypes.Variables;
 using UnityEngine;
 using Util;
 using Util.Attributes;

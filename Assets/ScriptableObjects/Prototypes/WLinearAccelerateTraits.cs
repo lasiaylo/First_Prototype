@@ -1,3 +1,4 @@
+using ScriptableObjects.Prototypes.Traits;
 using UnityEngine;
 
 namespace ScriptableObjects.Prototypes {

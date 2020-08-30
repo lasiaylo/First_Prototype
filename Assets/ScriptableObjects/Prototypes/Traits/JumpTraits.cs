@@ -2,8 +2,8 @@ using System;
 using UnityEngine;
 using Util;
 
-namespace ScriptableObjects.Prototypes {
-    [CreateAssetMenu]
+namespace ScriptableObjects.Prototypes.Traits {
+    [CreateAssetMenu(fileName = "JumpTraits", menuName = "Traits/Jump", order = 0)]
     public class JumpTraits : DefaultScriptableObject {
         [SerializeField] private Action action;
         [SerializeField] private float duration;

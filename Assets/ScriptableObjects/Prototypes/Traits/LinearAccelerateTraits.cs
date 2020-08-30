@@ -1,10 +1,9 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace ScriptableObjects.Prototypes
-{
-    [CreateAssetMenu]
+namespace ScriptableObjects.Prototypes.Traits {
+    [CreateAssetMenu(fileName = "LinearAccelerateTraits", menuName = "Traits/Linear Accelerate", order = 0)]
+
     public class LinearAccelerateTraits : DefaultScriptableObject {
         [SerializeField] private float acceleration;
         [SerializeField] private float deceleration;

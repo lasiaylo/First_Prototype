@@ -1,5 +1,6 @@
 ﻿using System;
 using ScriptableObjects.Prototypes;
+using ScriptableObjects.Prototypes.Traits;
 using UnityEngine;
 using Util;
 using Util.Attributes;
@@ -7,7 +8,7 @@ using Util.Attributes;
 namespace Translate.Movement {
     [Serializable]
     public class Gravity : Mod<Vector3> {
-        [Expandable] public GravityTraits gravityTraits;
+        [Expandable] public GravityTraits traits;
         private CharacterController _controller;
         
         public void Awake() {
@@ -15,16 +16,16 @@ namespace Translate.Movement {
         } 
 
         public override Vector3 Modify(Vector3 val) {
-            float speed = _controller.isGrounded ? gravityTraits.GroundGravity : gravityTraits.Gravity;
-            float arcMult = ShouldArc(val) ? gravityTraits.ArcMult : 1;
+            float speed = _controller.isGrounded ? traits.GroundGravity : traits.Gravity;
+            float arcMult = ShouldArc(val) ? traits.ArcMult : 1;
             return val.MoveTowardsY(
-                -gravityTraits.MaxFallSpeed, 
+                -traits.MaxFallSpeed, 
                 speed * arcMult * Time.deltaTime
             );
         }
 
         private Boolean ShouldArc(Vector3 direction) {
-            return (Math.Abs(direction.y) < gravityTraits.ArcThreshold);
+            return (Math.Abs(direction.y) < traits.ArcThreshold);
         }
     }
 }

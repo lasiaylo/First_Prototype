@@ -310,6 +310,7 @@ GameObject:
   - component: {fileID: 1224019363}
   - component: {fileID: 1224019364}
   - component: {fileID: 1224019365}
+  - component: {fileID: 1224019375}
   - component: {fileID: 1224019372}
   - component: {fileID: 1224019373}
   - component: {fileID: 1224019371}
@@ -318,6 +319,7 @@ GameObject:
   - component: {fileID: 1224019366}
   - component: {fileID: 1224019367}
   - component: {fileID: 1224019368}
+  - component: {fileID: 1224019374}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -382,8 +384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d303c1c5b204f93af7344a5d662bd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: {fileID: 11400000, guid: af84b62b157e82846a4de87f02eb3f97, type: 2}
   action: 0
-  direction: {fileID: 0}
 --- !u!114 &1224019365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,7 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traits: {fileID: 11400000, guid: a3a0f8014d9454f069362e9817222b97, type: 2}
-  decelerate: 0
+  input: {fileID: 11400000, guid: af84b62b157e82846a4de87f02eb3f97, type: 2}
 --- !u!114 &1224019367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,7 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c1d54aa6764c348faa758da7adcc26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityTraits: {fileID: 11400000, guid: d494594d72cc944e09ada5311e5eac5e, type: 2}
+  traits: {fileID: 11400000, guid: d494594d72cc944e09ada5311e5eac5e, type: 2}
 --- !u!114 &1224019368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 592dd9934fcb4d48b7bf57f2578fa158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpTraits: {fileID: 11400000, guid: 932ccea51d48747d692a48a8390a73cf, type: 2}
+  traits: {fileID: 11400000, guid: 932ccea51d48747d692a48a8390a73cf, type: 2}
 --- !u!114 &1224019369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,7 +498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb927e50e4845caa0fa4e3d835165f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: {fileID: 0}
+  currentState: {fileID: 1224019373}
 --- !u!114 &1224019373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +513,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 11400000, guid: a3a0f8014d9454f069362e9817222b97, type: 2}
   movement: {fileID: 11400000, guid: e7f6b220a673e4d4293aa0519feb54f8, type: 2}
+--- !u!114 &1224019374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224019360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb93a5c512349ec944416511e129a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnSpeed: {fileID: 11400000, guid: e402a9f574787d34cadb24f0d59af7eb, type: 2}
+  direction: {fileID: 11400000, guid: af84b62b157e82846a4de87f02eb3f97, type: 2}
+--- !u!114 &1224019375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224019360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc48d1909ef455995066c0b5fd640a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  val: {x: 0, y: 0, z: 0, w: 0}
+  mods:
+  - {fileID: 1224019374}
 --- !u!1 &1452133715
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +780,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2090511223}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.54, y: 0.376, z: 0}
+  m_LocalPosition: {x: 0.002, y: 0.376, z: 0.71}
   m_LocalScale: {x: 1, y: 0.2502565, z: 1}
   m_Children: []
   m_Father: {fileID: 106356585}

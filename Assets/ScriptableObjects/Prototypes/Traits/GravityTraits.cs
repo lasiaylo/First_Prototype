@@ -1,9 +1,8 @@
 using System;
 using UnityEngine;
 
-namespace ScriptableObjects.Prototypes
-{
-    [CreateAssetMenu]
+namespace ScriptableObjects.Prototypes.Traits {
+    [CreateAssetMenu(fileName = "GravityTraits", menuName = "Traits/Gravity", order = 0)]
     public class GravityTraits : DefaultScriptableObject {
         [SerializeField] private float gravity;
         [SerializeField] private float groundGravity;

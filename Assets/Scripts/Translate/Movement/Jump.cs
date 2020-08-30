@@ -1,5 +1,6 @@
 ﻿using System;
 using ScriptableObjects.Prototypes;
+using ScriptableObjects.Prototypes.Traits;
 using UnityEngine;
 using Util;
 using Util.Attributes;
@@ -13,37 +14,37 @@ namespace Translate.Movement {
     /// https://github.com/NoelFB/Celeste/blob/master/Source/Player/Player.cs#L2960
     /// </remarks>
     public class Jump: Mod<Vector3> {
-        [Expandable] public JumpTraits jumpTraits;
+        [Expandable] public JumpTraits traits;
         private Movement _movement;
 
         public void Awake() {
             _movement = GetComponent<Movement>();
-            jumpTraits.timer = new Timer(jumpTraits.Duration);
+            traits.timer = new Timer(traits.Duration);
         }
 
         private Vector3 StartJump(Vector3 direction) {
-            jumpTraits.timer.Reset();
-            return new Vector3(direction.x, jumpTraits.Speed, direction.z);
+            traits.timer.Reset();
+            return new Vector3(direction.x, traits.Speed, direction.z);
         }
 
         private Vector3 ContinueJump(Vector3 direction) {
-            jumpTraits.timer.Tick(Time.deltaTime);
-            float continueVelocity = Mathf.Min(jumpTraits.Speed, direction.y);
+            traits.timer.Tick(Time.deltaTime);
+            float continueVelocity = Mathf.Min(traits.Speed, direction.y);
             return new Vector3(direction.x, continueVelocity, direction.z);
         }
         
         private Vector3 EndJump(Vector3 direction) {
-            jumpTraits.timer.End();
+            traits.timer.End();
             return direction;
             // return new Vector3(direction.x, direction.y.ClampMax(0f), direction.z);
         }
 
         public override Vector3 Modify(Vector3 val) {
-            if (jumpTraits.Action == Action.StartJump) {
+            if (traits.Action == Action.StartJump) {
                 return StartJump(val);
             }
 
-            if (jumpTraits.Action == Action.ContinueJump) {
+            if (traits.Action == Action.ContinueJump) {
                 return ContinueJump(val);
             }
             return EndJump(val);
