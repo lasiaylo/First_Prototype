@@ -6,19 +6,13 @@ using UnityEngine.InputSystem;
 using Util.Attributes;
 
 [Serializable]
-public enum Action: int {
-    NotJumping,
-    ContinueJump,
-    StartJump,
-}
 public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
     [Expandable] public Vector3Variable direction;
     [Expandable] public Phase phase;
-    [SerializeField] private Action action = Action.NotJumping;
 
-    public Action Action {
-        get => action;
-        private set => action = value;
+    public Phase Phase {
+        get => phase;
+        private set => phase = value;
     }
 
     public Vector3 Direction {
@@ -39,9 +33,9 @@ public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        Action = context.performed
-            ? Action.ContinueJump
-            : Action.NotJumping;
+        Phase = context.performed
+            ? Phase.Continue
+            : Phase.End;
     }
 
     public void OnEnable() {

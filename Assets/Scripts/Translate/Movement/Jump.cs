@@ -40,11 +40,11 @@ namespace Translate.Movement {
         }
 
         public override Vector3 Modify(Vector3 val) {
-            if (traits.Action == Action.StartJump) {
+            if (traits.Phase == Phase.Start) {
                 return StartJump(val);
             }
 
-            if (traits.Action == Action.ContinueJump) {
+            if (traits.Phase == Phase.Continue) {
                 return ContinueJump(val);
             }
             return EndJump(val);

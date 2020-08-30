@@ -9,7 +9,7 @@ namespace States.Player {
 
         public override void Enter() {
             base.Enter();
-            jump.Action = Action.StartJump;
+            jump.Phase = Phase.Start;
         }
 
         public override void Transition() {
@@ -20,11 +20,11 @@ namespace States.Player {
         }
 
         public override void Tick() {
-            jump.Action = Input.Action;
+            jump.Phase = Input.Phase;
         }
 
         public override void Exit() {
-            jump.Action = Action.NotJumping;
+            jump.Phase = Phase.End;
         }
     }
 }

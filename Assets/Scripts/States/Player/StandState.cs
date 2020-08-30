@@ -1,12 +1,13 @@
 ﻿using System;
 using UnityEngine;
+using Util;
 
 namespace States.Player {
     public class StandState : GroundedState {
 
         public override void Transition() {
             base.Transition();
-            if (Input.Direction != Vector3.zero)
+            if (!Input.Direction.IsZero())
                 StateMachine.SetState<RunState>();
         }
 
