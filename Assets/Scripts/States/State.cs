@@ -1,23 +1,23 @@
-﻿using System.Runtime.Remoting.Services;
-using UnityEditorInternal;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace States {
-    public abstract class State: MonoBehaviour {
-        public StateMachine StateMachine { get; set; }
+public abstract class State : MonoBehaviour {
+    public StateMachine StateMachine { get; set; }
 
-        public abstract void Enter();
+    public abstract void Enter();
 
-        public abstract void Transition();
-        
-        public abstract void Tick();
-        
-        public abstract void Exit();
+    public abstract void Transition();
+
+    public abstract void Tick();
+
+    public abstract void Exit();
+}
+
+// Might be useless
+public abstract class PhysicsState : State {
+    protected PhysicsState(StateMachine stateMachine) {
     }
 
-    // Might be useless
-    public abstract class PhysicsState: State {
-        protected PhysicsState(StateMachine stateMachine) : base() { }
-        public abstract void FixedUpdate();
-    }
+    public abstract void FixedUpdate();
+}
 }

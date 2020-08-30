@@ -3,22 +3,22 @@ using UnityEngine;
 using Util;
 
 namespace ScriptableObjects.Prototypes.Trait {
-    [CreateAssetMenu(fileName = "JumpTraits", menuName = "Traits/Jump", order = 0)]
-    public class JumpTraits : DefaultScriptableObject {
-        [SerializeField] private Phase phase;
-        [SerializeField] private float duration;
-        [SerializeField] private float speed;
+[CreateAssetMenu(fileName = "JumpTraits", menuName = "Traits/Jump", order = 0)]
+public class JumpTraits : DefaultScriptableObject {
+    [SerializeField] private float duration;
+    [NonSerialized] public float Duration;
+    [SerializeField] private Phase phase;
 
-        [NonSerialized] public Phase Phase;
-        [NonSerialized] public float Duration;
-        [NonSerialized] public float Speed;
-        
-        public Timer timer;
+    [NonSerialized] public Phase Phase;
+    [SerializeField] private float speed;
+    [NonSerialized] public float Speed;
 
-        public override void OnAfterDeserialize() {
-            Phase = phase;
-            Duration = duration;
-            Speed = speed;
-        }
-    }    
+    public Timer timer;
+
+    public override void OnAfterDeserialize() {
+        Phase = phase;
+        Duration = duration;
+        Speed = speed;
+    }
+}
 }

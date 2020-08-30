@@ -1,12 +1,12 @@
 ﻿using System;
-using ScriptableObjects.Prototypes;
 using ScriptableObjects.Prototypes.Variable;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Util.Attributes;
 
 [Serializable]
-public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
+public class PlayerInputCache : MonoBehaviour, PlayerInput.IGameplayActions {
+    private PlayerInput _playerInput;
     [Expandable] public Vector3Variable direction;
     [Expandable] public Phase phase;
 
@@ -20,13 +20,6 @@ public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
         private set => direction.val = value.normalized;
     }
 
-    public void Awake() {
-        _playerInput = new PlayerInput();
-        _playerInput.Gameplay.SetCallbacks(this);
-    }
-
-    private PlayerInput _playerInput;
-
     public void OnMovement(InputAction.CallbackContext context) {
         var input = context.ReadValue<Vector2>();
         Direction = new Vector3(input.x, 0f, input.y);
@@ -36,6 +29,11 @@ public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
         Phase = context.performed
             ? Phase.Continue
             : Phase.End;
+    }
+
+    public void Awake() {
+        _playerInput = new PlayerInput();
+        _playerInput.Gameplay.SetCallbacks(this);
     }
 
     public void OnEnable() {

@@ -6,11 +6,11 @@ using UnityEngine;
 [RequireComponent(typeof(StateMachine))]
 [RequireComponent(typeof(Movement))]
 public class PlayerController : MonoBehaviour {
-    private StateMachine _stateMachine;
     private Movement _movement;
     private Rotation _rotation;
+    private StateMachine _stateMachine;
 
-    void Awake() {
+    private void Awake() {
         _stateMachine = GetComponent<StateMachine>();
         _movement = GetComponent<Movement>();
         _rotation = GetComponent<Rotation>();
