@@ -12,7 +12,7 @@ public abstract class AirState : MovableState {
 
     public override void Transition() {
         if (!Controller.isGrounded) return;
-        if (Movement.Value.GetXz().IsZero())
+        if (Input.InputDirection.IsZero())
             StateMachine.SetState<StandState>();
         else
             StateMachine.SetState<RunState>();

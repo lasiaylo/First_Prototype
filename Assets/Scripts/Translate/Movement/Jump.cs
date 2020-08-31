@@ -12,13 +12,7 @@ namespace Translate.Movement {
 ///     https://github.com/NoelFB/Celeste/blob/master/Source/Player/Player.cs#L2960
 /// </remarks>
 public class Jump : Mod<Vector3> {
-    private Movement _movement;
     [Expandable] public JumpTraits traits;
-
-    public void Awake() {
-        _movement = GetComponent<Movement>();
-        traits.timer = new Timer(traits.Duration);
-    }
 
     private Vector3 StartJump(Vector3 direction) {
         traits.timer.Reset();
@@ -39,7 +33,6 @@ public class Jump : Mod<Vector3> {
 
     public override Vector3 Modify(Vector3 val) {
         if (traits.Phase == Phase.Start) return StartJump(val);
-
         if (traits.Phase == Phase.Continue) return ContinueJump(val);
         return EndJump(val);
     }

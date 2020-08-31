@@ -15,10 +15,12 @@ public class JumpState : AirState {
     }
 
     public override void Tick() {
+        base.Tick();
         jump.Phase = Input.Phase;
     }
 
     public override void Exit() {
+        base.Tick();
         jump.Phase = Phase.End;
     }
 }

@@ -4,22 +4,19 @@ using UnityEngine.Events;
 
 namespace ScriptableObjects.Prototypes.Event {
     public class GameEventListener<T> : MonoBehaviour {
-        [SerializeField] private GameEvent<T> _gameEvent;
-        [SerializeField] private UnityEvent<T> _response;
-        public void OnEventRaised(T val) {
-            
-        }
+        [SerializeField] private GameEvent<T> gameEvent;
+        [SerializeField] private UnityEvent<T> response;
 
         public void OnEnable() {
-            _gameEvent.RegisterListener(this);
+            gameEvent.RegisterListener(this);
         }
 
         public void OnDisable() {
-            _gameEvent.UnregisterListener(this);
+            gameEvent.UnregisterListener(this);
         }
 
         public void OnEventRaised(T val) {
-            _response.Invoke(val);
+            response.Invoke(val);
         }
     }
 }
