@@ -12,7 +12,7 @@ public class LinearAccelerateTraits : DefaultScriptableObject {
     [SerializeField] private Vector3 maxSpeed;
     [NonSerialized] public Vector3 MaxSpeed;
 
-    public override void OnAfterDeserialize() {
+    public override void ResetToDefault() {
         Acceleration = acceleration;
         Deceleration = deceleration;
         MaxSpeed = maxSpeed;

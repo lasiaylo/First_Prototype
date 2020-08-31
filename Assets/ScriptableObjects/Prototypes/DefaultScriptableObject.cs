@@ -5,8 +5,12 @@ namespace ScriptableObjects.Prototypes {
 ///     Scriptable Object that resets value to default
 /// </summary>
 public abstract class DefaultScriptableObject : ScriptableObject, ISerializationCallbackReceiver {
-    public abstract void ResetValue();
+    public abstract void ResetToDefault();
 
-    public virtual void OnBeforeSerialize() { }
+    public void OnAfterDeserialize() {
+        ResetToDefault();
+    }
+
+    public void OnBeforeSerialize() { }
 }
 }

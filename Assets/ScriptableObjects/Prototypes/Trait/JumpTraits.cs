@@ -13,7 +13,7 @@ public class JumpTraits : DefaultScriptableObject {
 
     public Timer timer;
 
-    public void Reset() {
+    public override void ResetToDefault() {
         Phase = phase;
         Speed = speed;
         timer.Reset();

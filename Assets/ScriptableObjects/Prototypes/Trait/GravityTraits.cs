@@ -16,7 +16,7 @@ public class GravityTraits : DefaultScriptableObject {
     [SerializeField] private float maxFallSpeed;
     [NonSerialized] public float MaxFallSpeed;
 
-    public override void OnAfterDeserialize() {
+    public override void ResetToDefault() {
         Gravity = gravity;
         GroundGravity = groundGravity;
         ArcMult = arcMult;
