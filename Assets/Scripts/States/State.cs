@@ -15,9 +15,6 @@ public abstract class State : MonoBehaviour {
 
 // Might be useless
 public abstract class PhysicsState : State {
-    protected PhysicsState(StateMachine stateMachine) {
-    }
-
     public abstract void FixedUpdate();
 }
 }

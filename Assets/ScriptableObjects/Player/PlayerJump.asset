@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e1077228734bdfa2b84a1bc86e1e48, type: 3}
   m_Name: PlayerJump
   m_EditorClassIdentifier: 
-  action: 0
   duration: 1
+  phase: 2
   speed: 9.42
   timer:
-    Duration: 0
-    Remaining: 0
+    Duration: 1
+    Remaining: 0.075711675

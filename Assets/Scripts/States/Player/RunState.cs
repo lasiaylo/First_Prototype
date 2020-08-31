@@ -12,7 +12,7 @@ public class RunState : GroundedState {
 
     public override void Transition() {
         base.Transition();
-        if (Input.Direction.IsZero() && _movement.Value.GetXz().IsZero()) StateMachine.SetState<StandState>();
+        if (Input.InputDirection.IsZero() && _movement.Value.GetXz().IsZero()) StateMachine.SetState<StandState>();
     }
 
     public override void Tick() {

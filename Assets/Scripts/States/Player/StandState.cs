@@ -4,7 +4,7 @@ namespace States.Player {
 public class StandState : GroundedState {
     public override void Transition() {
         base.Transition();
-        if (!Input.Direction.IsZero())
+        if (!Input.InputDirection.IsZero())
             StateMachine.SetState<RunState>();
     }
 

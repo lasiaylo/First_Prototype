@@ -7,7 +7,6 @@ using Util.Attributes;
 namespace States.Player {
 public abstract class MovableState : State {
     protected CharacterController Controller;
-    [Expandable] public Vector3Variable input;
     protected PlayerInputCache Input;
     [Expandable] public LinearAccelerateTraits movement;
     [Expandable] public WLinearAccelerateTraits playerMovement;

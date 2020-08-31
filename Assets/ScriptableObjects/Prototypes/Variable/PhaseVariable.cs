@@ -3,7 +3,7 @@ using UnityEngine;
 public enum Phase {
     Start,
     Continue,
-    End
+    End,
 }
 
 namespace ScriptableObjects.Prototypes.Variable {
