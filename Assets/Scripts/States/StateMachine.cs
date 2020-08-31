@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace States {
-public class StateMachine : MonoBehaviour {
+public class StateMachine : Ticker {
     private bool _stateAlreadySet;
     private Dictionary<Type, State> _states;
     public State currentState;
@@ -22,7 +22,7 @@ public class StateMachine : MonoBehaviour {
         _stateAlreadySet = true;
     }
 
-    public void Tick() {
+    public override void Tick() {
         _stateAlreadySet = false;
         currentState.Tick();
         currentState.Transition();
