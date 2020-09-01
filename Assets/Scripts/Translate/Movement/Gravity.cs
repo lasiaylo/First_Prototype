@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using ScriptableObjects.Prototypes.Trait;
 using UnityEngine;
 using Util;
@@ -8,7 +9,7 @@ namespace Translate.Movement {
 [Serializable]
 public class Gravity : Mod<Vector3> {
     private CharacterController _controller;
-    [Expandable] public GravityTraits traits;
+    [Expandable, NotNull] public GravityTraits traits;
 
     public void Awake() {
         _controller = GetComponent<CharacterController>();

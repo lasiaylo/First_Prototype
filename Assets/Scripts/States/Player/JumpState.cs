@@ -1,8 +1,16 @@
-﻿using ScriptableObjects.Prototypes.Trait;
+﻿using JetBrains.Annotations;
+using ScriptableObjects.Prototypes.Trait;
+using Translate.Movement;
 
 namespace States.Player {
 public class JumpState : AirState {
-    public JumpTraits jump;
+    [NotNull] public JumpTraits jump;
+    private Movement _movement;
+
+    public override void Awake() {
+        base.Awake();
+        _movement = GetComponent<Movement>();
+    }
 
     public override void Enter() {
         base.Enter();
@@ -11,7 +19,7 @@ public class JumpState : AirState {
 
     public override void Transition() {
         base.Transition();
-        if (jump.timer.IsEnd() || Movement.Value.y <= 0) StateMachine.SetState<FallState>();
+        if (jump.timer.IsEnd() || _movement.Value.y <= 0) StateMachine.SetState<FallState>();
     }
 
     public override void Tick() {

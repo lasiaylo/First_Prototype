@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using ScriptableObjects.Prototypes.Variable;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,8 +8,8 @@ using Util.Attributes;
 [Serializable]
 public class PlayerInputCache : MonoBehaviour, PlayerInput.IGameplayActions {
     private PlayerInput _playerInput;
-    [Expandable] public Vector3Variable inputDirection;
-    [Expandable] public Phase phase;
+    [Expandable, NotNull] public Vector3Variable inputDirection;
+    [Expandable, NotNull] public Phase phase;
 
     public Phase Phase {
         get => phase;

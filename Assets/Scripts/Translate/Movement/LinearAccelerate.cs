@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using ScriptableObjects.Prototypes.Variable;
 using ScriptableObjects.Prototypes.Wrapper;
 using UnityEngine;
@@ -15,10 +16,12 @@ namespace Translate.Movement {
 /// </remarks>
 [Serializable]
 public class LinearAccelerate : Mod<Vector3> {
-    [Expandable] public Vector3Variable inputDirection;
-    [Expandable] public WLinearAccelerateTraits traits;
+    [Expandable, NotNull] public Vector3Variable inputDirection;
+    [Expandable, NotNull] public WLinearAccelerateTraits traits;
 
-    protected Vector3 Target => Vector3.Scale(inputDirection.val, traits.val.MaxSpeed);
+    protected Vector3 Target {
+        get => Vector3.Scale(inputDirection.val, traits.val.MaxSpeed);
+    }
 
     public override Vector3 Modify(Vector3 val) {
         return Vector3.MoveTowards(val, Target, Speed(val) * Time.deltaTime);

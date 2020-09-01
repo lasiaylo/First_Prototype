@@ -4,8 +4,9 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - playerMovement: {fileID: 11400000, guid: a3a0f8014d9454f069362e9817222b97, type: 2}
-  - movement: {fileID: 11400000, guid: faec6171331d33e4882711f23f804612, type: 2}
+  - gameEvent: {instanceID: 0}
+  - accelerateTraits: {fileID: 11400000, guid: faec6171331d33e4882711f23f804612, type: 2}
+  - traits: {instanceID: 0}
   - jump: {fileID: 11400000, guid: 932ccea51d48747d692a48a8390a73cf, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}

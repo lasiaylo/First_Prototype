@@ -1,4 +1,5 @@
-﻿using ScriptableObjects.Prototypes.Trait;
+﻿using JetBrains.Annotations;
+using ScriptableObjects.Prototypes.Trait;
 using UnityEngine;
 using Util;
 using Util.Attributes;
@@ -12,7 +13,7 @@ namespace Translate.Movement {
 ///     https://github.com/NoelFB/Celeste/blob/master/Source/Player/Player.cs#L2960
 /// </remarks>
 public class Jump : Mod<Vector3> {
-    [Expandable] public JumpTraits traits;
+    [Expandable, NotNull] public JumpTraits traits;
 
     private Vector3 StartJump(Vector3 direction) {
         traits.timer.Reset();
