@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 using Util.Attributes;
 
 [Serializable]
-public class PlayerInputCache : MonoBehaviour, PlayerInput.IGameplayActions {
+public class InputManager : MonoBehaviour, PlayerInput.IGameplayActions {
     private PlayerInput _playerInput;
     [Expandable, NotNull] public Vector3Variable inputDirection;
-    [Expandable, NotNull] public Phase phase;
+    [Expandable, NotNull] public Phase phase = Phase.End;
 
     public Phase Phase {
         get => phase;
@@ -32,9 +32,7 @@ public class PlayerInputCache : MonoBehaviour, PlayerInput.IGameplayActions {
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        Phase = context.performed
-            ? Phase.Continue
-            : Phase.End;
+        Phase = context.started ? Phase.Continue : Phase.End;
     }
 
     public void OnEnable() {

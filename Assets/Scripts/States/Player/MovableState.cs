@@ -8,13 +8,13 @@ using Util.Attributes;
 namespace States.Player {
 public abstract class MovableState : State {
     protected CharacterController Controller;
-    protected PlayerInputCache Input;
+    protected InputManager Input;
     [Expandable, NotNull] public LinearAccelerateTraits accelerateTraits;
     [Expandable, NotNull] public WLinearAccelerateTraits traits;
 
     public virtual void Awake() {
         Controller = GetComponent<CharacterController>();
-        Input = GetComponent<PlayerInputCache>();
+        Input = GetComponent<InputManager>();
     }
 
     public override void Enter() {
