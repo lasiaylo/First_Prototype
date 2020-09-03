@@ -1,24 +1,24 @@
-﻿using System.Runtime.Remoting.Services;
-using UnityEditorInternal;
+﻿using ScriptableObjects.Prototypes.Event;
 using UnityEngine;
 
 namespace States {
-    public abstract class State<T> {
-        protected StateMachine<T> StateMachine { get; private set; }
-        protected State(StateMachine<T> stateMachine) {
-            StateMachine = stateMachine;
-        }
-        
-        public abstract void Enter(T owner);
-        
-        public abstract void Tick(T owner);
-        
-        public abstract void Exit(T owner);
+public abstract class State : MonoBehaviour {
+    public StateMachine StateMachine { get; set; }
+    [SerializeField] private GameEvent<Phase> gameEvent;
+
+    public virtual void Enter() {
+        gameEvent?.Raise(Phase.Start);
     }
 
-    // Might be useless
-    public abstract class PhysicsState<T>: State<T> {
-        protected PhysicsState(StateMachine<T> stateMachine) : base(stateMachine) { }
-        public abstract void FixedUpdate(T owner);
+    public virtual void Tick() {
+        gameEvent?.Raise(Phase.Continue);
     }
+
+    public virtual void Exit() {
+        gameEvent?.Raise(Phase.End);
+    }
+
+    public abstract void Transition();
+}
+
 }

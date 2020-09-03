@@ -1,36 +1,40 @@
 ﻿using System;
+using JetBrains.Annotations;
+using ScriptableObjects.Prototypes.Variable;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
+using Util.Attributes;
 
 [Serializable]
-public enum Action: int {
-    NotJumping = 0,
-    Jumping = 1,
-}
-public class PlayerInputCache: MonoBehaviour, PlayerInput.IGameplayActions {
-    public Action Action { get; private set; }
-    public Vector3 Direction;
-    private InputAction.CallbackContext context;
+public class PlayerInputCache : MonoBehaviour, PlayerInput.IGameplayActions {
+    private PlayerInput _playerInput;
+    [Expandable, NotNull] public Vector3Variable inputDirection;
+    [Expandable, NotNull] public Phase phase;
+
+    public Phase Phase {
+        get => phase;
+        private set => phase = value;
+    }
+
+    public Vector3 InputDirection {
+        get => inputDirection.val;
+        private set => inputDirection.val = value.normalized;
+    }
 
     public void Awake() {
-        Action = Action.NotJumping;
-        Direction = new Vector3();
         _playerInput = new PlayerInput();
         _playerInput.Gameplay.SetCallbacks(this);
     }
 
-    private PlayerInput _playerInput;
-
     public void OnMovement(InputAction.CallbackContext context) {
         var input = context.ReadValue<Vector2>();
-        this.context = context;
-        Direction = new Vector3(input.x, 0f, input.y).normalized;
+        InputDirection = new Vector3(input.x, 0f, input.y);
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        Action = context.performed ? Action.Jumping : Action.NotJumping;
+        Phase = context.performed
+            ? Phase.Continue
+            : Phase.End;
     }
 
     public void OnEnable() {

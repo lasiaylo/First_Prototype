@@ -1,21 +1,14 @@
-﻿
-
+﻿using ScriptableObjects.Prototypes.Event;
+using Translate.Movement;
 using UnityEngine;
+using Util;
 
 namespace States.Player {
-    public class RunState: MovableState {
-        public RunState(StateMachine<PlayerController> stateMachine) : base(stateMachine) { }
-        
-        
-        public override void Enter(PlayerController owner) {
-            Debug.Log("RUNNING");
-        }
+public class RunState : GroundedState {
 
-        public override void Tick(PlayerController player) {
-            base.Tick(player);
-            if (player.PlayerInputCache.Direction == Vector3.zero) {
-                StateMachine.SetState(new IdleState(StateMachine), player);
-            }
-        }
+    public override void Transition() {
+        base.Transition();
+        if (Input.InputDirection.IsZero()) StateMachine.SetState<StandState>();
     }
+}
 }

@@ -1,23 +1,25 @@
-﻿using UnityEngine;
+﻿using JetBrains.Annotations;
+using ScriptableObjects.Prototypes.Trait;
+using ScriptableObjects.Prototypes.Variable;
+using ScriptableObjects.Prototypes.Wrapper;
+using UnityEngine;
+using Util.Attributes;
 
 namespace States.Player {
-    public abstract class MovableState : State<PlayerController> {
-        private float _acceleration = 1.85f;
-        private float _friction = 0.75f; 
-        private float _maxSpeed = 10;
+public abstract class MovableState : State {
+    protected CharacterController Controller;
+    protected PlayerInputCache Input;
+    [Expandable, NotNull] public LinearAccelerateTraits accelerateTraits;
+    [Expandable, NotNull] public WLinearAccelerateTraits traits;
 
-        protected MovableState(StateMachine<PlayerController> stateMachine) : base(stateMachine) { }
-        
-        public override void Tick(PlayerController player) {
-            player.Gravity.Tick(player.Controller.isGrounded);
-            player.LinearMove.Tick(
-                _acceleration,
-                _friction,
-                _maxSpeed,
-                player.PlayerInputCache.Direction);
-        }
-        
-        public override void Exit(PlayerController player) { }
-        
+    public virtual void Awake() {
+        Controller = GetComponent<CharacterController>();
+        Input = GetComponent<PlayerInputCache>();
     }
+
+    public override void Enter() {
+        base.Enter();
+        traits.val = accelerateTraits;
+    }
+}
 }
