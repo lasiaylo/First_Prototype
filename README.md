@@ -1,2 +1,2 @@
 # first_prototype
-Learning how to make games
+Learning how to make a game
