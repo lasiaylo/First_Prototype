@@ -8,6 +8,6 @@ public enum Phase {
 
 namespace ScriptableObjects.Prototypes.Variable {
 [CreateAssetMenu(fileName = "Phase", menuName = "Variables/PhaseVariable", order = 0)]
-public class PhaseVariable : DefaultVariable<Phase> {
-}
+    public class PhaseVariable : DefaultVariable<Phase> {
+    }
 }
