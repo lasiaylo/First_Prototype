@@ -5,30 +5,30 @@ using UnityEngine;
 namespace States {
 public class StateMachineTicker : Ticker {
     private bool _stateAlreadySet;
-    private Dictionary<Type, State> _states;
-    public State currentState;
+    private Dictionary<Type, OldState> _states;
+    public OldState currentOldState;
 
     public void Awake() {
-        _states = new Dictionary<Type, State>();
-        currentState.StateMachineTicker = this;
+        _states = new Dictionary<Type, OldState>();
+        currentOldState.StateMachineTicker = this;
     }
 
-    public void SetState<T>() where T : State {
+    public void SetState<T>() where T : OldState {
         if (_stateAlreadySet) return;
         T state = GetState<T>();
-        currentState?.Exit();
-        currentState = state;
-        currentState.Enter();
+        currentOldState?.Exit();
+        currentOldState = state;
+        currentOldState.Enter();
         _stateAlreadySet = true;
     }
 
     public override void Tick() {
         _stateAlreadySet = false;
-        currentState.Tick();
-        currentState.Transition();
+        currentOldState.Tick();
+        currentOldState.Transition();
     }
 
-    private T GetState<T>() where T : State {
+    private T GetState<T>() where T : OldState {
         var type = typeof(T);
         if (_states.ContainsKey(type)) return (T) _states[type];
         var state = GetComponent<T>();

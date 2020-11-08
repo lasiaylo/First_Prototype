@@ -1,4 +1,8 @@
-﻿namespace States.Player {
-public class FallState : AirState {
-}
+﻿using UnityEngine;
+
+namespace States.Player {
+    [CreateAssetMenu(fileName = "FallState", menuName = "States/FallState", order = 4)]
+
+    public class FallState : AirState {
+    }
 }

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac00af414c54b078b38f4e3cf20ccc2, type: 3}
+  m_Name: JumpState
+  m_EditorClassIdentifier: 
+  phase: 0
+  gameObject: {fileID: 0}
+  stateMachine: {fileID: 0}
+  accelerateTraits: {fileID: 11400000, guid: faec6171331d33e4882711f23f804612, type: 2}
+  traits: {fileID: 11400000, guid: a3a0f8014d9454f069362e9817222b97, type: 2}
+  jump: {fileID: 11400000, guid: 932ccea51d48747d692a48a8390a73cf, type: 2}
