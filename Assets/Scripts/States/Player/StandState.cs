@@ -5,7 +5,7 @@ public class StandState : GroundedState {
     public override void Transition() { 
         base.Transition();
         if (!Input.InputDirection.IsZero())
-            StateMachine.SetState<RunState>();
+            StateMachineTicker.SetState<RunState>();
     }
 }
 }

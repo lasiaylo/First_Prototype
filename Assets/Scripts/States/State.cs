@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace States {
 public abstract class State : MonoBehaviour {
-    public StateMachine StateMachine { get; set; }
+    public StateMachineTicker StateMachineTicker { get; set; }
     [SerializeField] private GameEvent<Phase> gameEvent;
 
     public virtual void Enter() {

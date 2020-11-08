@@ -18,4 +18,4 @@ public class TickerManager : MonoBehaviour {
     public void OnValidate() {
         if (tickers.Count == 0) Debug.LogWarning("No tickers has been assigned");
     }
-}    
+}     

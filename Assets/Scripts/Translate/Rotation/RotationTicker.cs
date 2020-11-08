@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace Translate.Rotation {
-public class Rotation : Modifier<Quaternion> {
+public class RotationTicker : Modifier<Quaternion> {
     public void Awake() {
         val = transform.rotation;
     }

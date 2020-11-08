@@ -13,7 +13,7 @@ using Util.Attributes;
 /// Draws the property field for any field marked with ExpandableAttribute.
 /// </summary>
 /// <remarks>
-/// Taken from Fydar's post on the Unity forum:
+/// Source: Fydar's post on the Unity forum
 /// https://forum.unity.com/threads/editor-tool-better-scriptableobject-inspector-editing.484393/
 /// </remarks>
 [CustomPropertyDrawer(typeof(ExpandableAttribute), true)]

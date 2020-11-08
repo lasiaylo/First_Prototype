@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace States {
-public class StateMachine : Ticker {
+public class StateMachineTicker : Ticker {
     private bool _stateAlreadySet;
     private Dictionary<Type, State> _states;
     public State currentState;
 
     public void Awake() {
         _states = new Dictionary<Type, State>();
-        currentState.StateMachine = this;
+        currentState.StateMachineTicker = this;
     }
 
     public void SetState<T>() where T : State {
@@ -32,7 +32,7 @@ public class StateMachine : Ticker {
         var type = typeof(T);
         if (_states.ContainsKey(type)) return (T) _states[type];
         var state = GetComponent<T>();
-        state.StateMachine = this;
+        state.StateMachineTicker = this;
         _states.Add(type, state);
         return state;
     }

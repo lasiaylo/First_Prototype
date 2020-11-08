@@ -5,11 +5,11 @@ using Translate.Movement;
 namespace States.Player {
 public class JumpState : AirState {
     [NotNull] public JumpTraits jump;
-    private Movement _movement;
+    private MovementTicker _movementTicker;
 
     public override void Awake() {
         base.Awake();
-        _movement = GetComponent<Movement>();
+        _movementTicker = GetComponent<MovementTicker>();
     }
 
     public override void Enter() {
@@ -19,7 +19,7 @@ public class JumpState : AirState {
 
     public override void Transition() {
         base.Transition();
-        if (jump.timer.IsEnd() || _movement.Value.y <= 0) StateMachine.SetState<FallState>();
+        if (jump.timer.IsEnd() || _movementTicker.Value.y <= 0) StateMachineTicker.SetState<FallState>();
     }
 
     public override void Tick() {
