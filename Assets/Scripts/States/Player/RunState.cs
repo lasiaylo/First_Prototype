@@ -1,5 +1,4 @@
-﻿using ScriptableObjects.Prototypes.Event;
-using Translate.Movement;
+﻿using Translate.Movement;
 using UnityEngine;
 using Util;
 

@@ -1,6 +1,4 @@
-﻿using ScriptableObjects.Prototypes.Event;
-
-namespace States.Player {
+﻿namespace States.Player {
 public abstract class GroundedState : MovableState{
     public override void Transition() {
         if (Input.Phase == Phase.Continue)

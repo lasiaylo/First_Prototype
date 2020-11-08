@@ -15,7 +15,7 @@ public class StateMachineTicker : Ticker {
 
     public void SetState<T>() where T : State {
         if (_stateAlreadySet) return;
-        var state = GetState<T>();
+        T state = GetState<T>();
         currentState?.Exit();
         currentState = state;
         currentState.Enter();

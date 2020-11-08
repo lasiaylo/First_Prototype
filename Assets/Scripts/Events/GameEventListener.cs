@@ -1,8 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace ScriptableObjects.Prototypes.Event {
+namespace Events {
     public class GameEventListener<T> : MonoBehaviour {
         [SerializeField] private GameEvent<T> gameEvent;
         [SerializeField] private UnityEvent<T> response;

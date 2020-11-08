@@ -2,7 +2,7 @@
 using UnityEngine;
 using Util.Attributes;
 
-namespace ScriptableObjects.Prototypes.Event {
+namespace Events {
     public abstract class GameEvent<T> : ScriptableObject {
         [Expandable] public List<GameEventListener<T>> listeners = new List<GameEventListener<T>>();
     

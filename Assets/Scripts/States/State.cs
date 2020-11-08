@@ -1,4 +1,5 @@
-﻿using ScriptableObjects.Prototypes.Event;
+﻿using Events;
+using States.Player;
 using UnityEngine;
 
 namespace States {
