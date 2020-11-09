@@ -16,4 +16,4 @@ MonoBehaviour:
   phase: 2
   timer:
     duration: 2
-    remaining: 0
+    remaining: 2

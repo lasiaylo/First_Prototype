@@ -6,7 +6,6 @@ using Util.Attributes;
 
 namespace States {
     public class StateMachine : Ticker {
-        [Expandable]
         public State currentState;
         public GameEvent<State> gameEvent;
         private bool _stateAlreadySet;
@@ -30,7 +29,6 @@ namespace States {
         public override void Tick() {
             _stateAlreadySet = false;
             RaiseEvent(Phase.Continue);
-            Debug.Log(currentState.GetType());
             currentState.Transition();
         }
 

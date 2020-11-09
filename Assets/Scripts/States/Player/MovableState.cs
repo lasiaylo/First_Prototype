@@ -11,9 +11,11 @@ namespace States.Player {
         [Expandable, NotNull] public LinearAccelerateTraits accelerateTraits;
         [Expandable, NotNull] public WLinearAccelerateTraits traits;
 
-        public virtual void Awake() {
-            Controller = stateMachine.gameObject.GetComponent<CharacterController>();
-            Input = stateMachine.gameObject.GetComponent<InputManager>();
+        public override void Transition() {
+            if (Controller is null) 
+                Controller = stateMachine.gameObject.GetComponent<CharacterController>();
+            if (Input is null)
+                Input = stateMachine.gameObject.GetComponent<InputManager>();
         }
     }
 }

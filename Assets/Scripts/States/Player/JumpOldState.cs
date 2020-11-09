@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using ScriptableObjects.Prototypes.Trait;
 using Translate.Movement;
+using UnityEngine;
 
 namespace States.Player {
 public class JumpOldState : AirOldState {
@@ -15,6 +16,7 @@ public class JumpOldState : AirOldState {
     public override void Enter() {
         base.Enter();
         jump.Phase = Phase.Start;
+        Debug.Log("JUMP!");
     }
 
     public override void Transition() {

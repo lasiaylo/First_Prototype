@@ -4,7 +4,7 @@ using Util.Attributes;
 
 namespace Events {
     public abstract class GameEvent<T> : ScriptableObject {
-        [Expandable] public List<GameEventListener<T>> listeners = new List<GameEventListener<T>>();
+        public List<GameEventListener<T>> listeners = new List<GameEventListener<T>>();
     
         [ContextMenu("Raise Event")]
         public void Raise(T val) {

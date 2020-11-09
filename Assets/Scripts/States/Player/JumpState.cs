@@ -10,13 +10,10 @@ namespace States.Player {
         [NotNull] public JumpTraits jump;
         private MovementTicker _movementTicker;
 
-        public override void Awake() {
-            base.Awake();
-            _movementTicker = gameObject.GetComponent<MovementTicker>();
-        }
-
         public override void Transition() {
             base.Transition();
+            if (_movementTicker is null)
+                _movementTicker = stateMachine.gameObject.GetComponent<MovementTicker>();
             if (jump.timer.IsEnd() || _movementTicker.Value.y <= 0)
                 stateMachine.SetState<FallState>();
         }

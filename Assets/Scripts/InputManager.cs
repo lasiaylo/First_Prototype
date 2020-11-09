@@ -1,5 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
+using ScriptableObjects.Prototypes.Trait;
 using ScriptableObjects.Prototypes.Variable;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,11 +10,11 @@ using Util.Attributes;
 public class InputManager : MonoBehaviour, PlayerInput.IGameplayActions {
     private PlayerInput _playerInput;
     [Expandable, NotNull] public Vector3Variable inputDirection;
-    [Expandable, NotNull] public Phase phase = Phase.End;
+    [Expandable, NotNull] public JumpTraits traits;
 
     public Phase Phase {
-        get => phase;
-        private set => phase = value;
+        get => traits.Phase;
+        private set => traits.Phase = value;
     }
 
     public Vector3 InputDirection {
@@ -32,7 +33,13 @@ public class InputManager : MonoBehaviour, PlayerInput.IGameplayActions {
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        Phase = context.started ? Phase.Continue : Phase.End;
+        // Phase = context.started ? Phase.Continue : Phase.End;
+        Phase = Phase.Continue;
+        // Debug.Log(context);
+        // Debug.Log("LOOK I JUMPED");
+        // Debug.Log(Phase);
+        // Debug.Log(phase);
+        // Debug.Break();
     }
 
     public void OnEnable() {
