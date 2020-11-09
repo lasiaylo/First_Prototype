@@ -9,14 +9,17 @@ namespace States {
     public class StateMachine : Ticker {
         [Expandable, NotNull] public State currentState;
         public GameEvent<State> stateEvent;
+        public List<State> states;
         private bool _stateAlreadySet;
-        private Dictionary<Type, State> _states;
+        private Dictionary<Type, State> _stateDict;
 
         public void Awake() {
-            _states = new Dictionary<Type, State>();
+            _stateDict = new Dictionary<Type, State>();
             currentState = Instantiate(currentState);
-            currentState.Initialize(this);
-            _states.Add(currentState.GetType(), currentState);
+            foreach (State state in states) {
+                InitializeState(state);
+            }
+            InitializeState(currentState);
             stateEvent?.Raise(currentState.Enter());
         }
 
@@ -36,12 +39,16 @@ namespace States {
 
         private TState GetState<TState>() where TState : State {
             Type type = typeof(TState);
-            if (_states.ContainsKey(type))
-                return (TState) _states[type];
+            if (_stateDict.ContainsKey(type))
+                return (TState) _stateDict[type];
             TState state = ScriptableObject.CreateInstance<TState>();
-            state.Initialize(this);
-            _states.Add(type, state);
+            InitializeState(state);
             return state;
+        }
+
+        private void InitializeState(State state) {
+            state.Initialize(this);
+            _stateDict.Add(state.GetType(), state);
         }
     }
 }

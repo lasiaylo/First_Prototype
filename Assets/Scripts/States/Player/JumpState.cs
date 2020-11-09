@@ -5,9 +5,8 @@ using UnityEngine;
 
 namespace States.Player {
     [CreateAssetMenu(fileName = "JumpState", menuName = "States/JumpState", order = 2)]
-
     public class JumpState : AirState {
-        [NotNull] public JumpTraits jump;
+        public JumpTraits jump;
         private MovementTicker _movementTicker;
 
         public override void Initialize(StateMachine newStateMachine) {
@@ -29,7 +28,7 @@ namespace States.Player {
             jump.Phase = Phase.End;
             return base.Exit();
         }
-        
+
         public override void Transition() {
             base.Transition();
             if (jump.timer.IsEnd() || _movementTicker.Value.y <= 0)

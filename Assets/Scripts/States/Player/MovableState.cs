@@ -9,7 +9,7 @@ namespace States.Player {
         protected CharacterController Controller;
         protected InputManager Input;
         [Expandable, NotNull] public LinearAccelerateTraits accelerateTraits;
-        [Expandable, NotNull] public WLinearAccelerateTraits traits;
+        [Expandable, NotNull] public WLinearAccelerateTraits wrapper;
 
         public override void Initialize(StateMachine newStateMachine) {
             base.Initialize(newStateMachine);

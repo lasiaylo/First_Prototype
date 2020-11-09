@@ -16,7 +16,6 @@ public class JumpOldState : AirOldState {
     public override void Enter() {
         base.Enter();
         jump.Phase = Phase.Start;
-        Debug.Log("JUMP!");
     }
 
     public override void Transition() {
