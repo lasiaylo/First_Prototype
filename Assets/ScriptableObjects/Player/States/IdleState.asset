@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phase: 0
   stateMachine: {fileID: 0}
-  accelerateTraits: {fileID: 0}
-  traits: {fileID: 0}
+  accelerateTraits: {fileID: 11400000, guid: e7f6b220a673e4d4293aa0519feb54f8, type: 2}
+  wrapper: {fileID: 11400000, guid: a3a0f8014d9454f069362e9817222b97, type: 2}

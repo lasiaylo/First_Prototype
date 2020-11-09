@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Events;
 using JetBrains.Annotations;
@@ -7,7 +8,7 @@ using Util.Attributes;
 
 namespace States {
     public class StateMachine : Ticker {
-        [Expandable, NotNull] public State currentState;
+        [Expandable] public State currentState;
         public GameEvent<State> stateEvent;
         public List<State> states;
         private bool _stateAlreadySet;
@@ -15,11 +16,11 @@ namespace States {
 
         public void Awake() {
             _stateDict = new Dictionary<Type, State>();
-            currentState = Instantiate(currentState);
-            foreach (State state in states) {
-                InitializeState(state);
+            for (int i = 0; i < states.Count; i++) {
+                states[i] = Instantiate(states[i]);
+                InitializeState(states[i]);
             }
-            InitializeState(currentState);
+            currentState = states[0];
             stateEvent?.Raise(currentState.Enter());
         }
 
@@ -41,14 +42,16 @@ namespace States {
             Type type = typeof(TState);
             if (_stateDict.ContainsKey(type))
                 return (TState) _stateDict[type];
+            Debug.Log("YOU SHOULDn'T BE HERE");
             TState state = ScriptableObject.CreateInstance<TState>();
             InitializeState(state);
             return state;
         }
 
         private void InitializeState(State state) {
-            state.Initialize(this);
-            _stateDict.Add(state.GetType(), state);
+            Type type = state.GetType();
+            state.Initialize(this); 
+           _stateDict.Add(type, state);
         }
     }
 }

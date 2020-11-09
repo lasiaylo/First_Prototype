@@ -1139,7 +1139,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: {fileID: 11400000, guid: 9b516e932a222fb49b142da15ea63e27, type: 2}
-  gameEvent: {fileID: 0}
+  stateEvent: {fileID: 0}
+  states:
+  - {fileID: 11400000, guid: 9b516e932a222fb49b142da15ea63e27, type: 2}
+  - {fileID: 11400000, guid: 7f71d13be08fa50419a3aad3b0f42233, type: 2}
+  - {fileID: 11400000, guid: 13b22ea98e722ef47b58937d44b11e90, type: 2}
+  - {fileID: 11400000, guid: 47f3c278391392a46ba4ff428881943d, type: 2}
 --- !u!114 &2092366491
 MonoBehaviour:
   m_ObjectHideFlags: 0
