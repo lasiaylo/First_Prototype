@@ -2,33 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using JetBrains.Annotations;
 using Util.Attributes;
 
 namespace States {
     public class StateMachine : Ticker {
-        public State currentState;
-        public GameEvent<State> gameEvent;
+        [Expandable, NotNull] public State currentState;
+        public GameEvent<State> stateEvent;
         private bool _stateAlreadySet;
         private Dictionary<Type, State> _states;
 
         public void Awake() {
             _states = new Dictionary<Type, State>();
-            currentState = ScriptableObject.Instantiate(currentState);
-            currentState.stateMachine = this;
+            currentState = Instantiate(currentState);
+            currentState.Initialize(this);
             _states.Add(currentState.GetType(), currentState);
+            stateEvent?.Raise(currentState.Enter());
         }
-        
+
         public void SetState<TState>() where TState : State {
             if (_stateAlreadySet) return;
-            RaiseEvent(Phase.End);
+            stateEvent?.Raise(currentState.Exit());
             currentState = GetState<TState>();
-            RaiseEvent(Phase.Start); 
+            stateEvent?.Raise(currentState.Enter());
             _stateAlreadySet = true;
         }
 
         public override void Tick() {
             _stateAlreadySet = false;
-            RaiseEvent(Phase.Continue);
+            stateEvent?.Raise(currentState.Tick());
             currentState.Transition();
         }
 
@@ -37,14 +39,9 @@ namespace States {
             if (_states.ContainsKey(type))
                 return (TState) _states[type];
             TState state = ScriptableObject.CreateInstance<TState>();
-            state.stateMachine = this;
+            state.Initialize(this);
             _states.Add(type, state);
             return state;
-        }
-
-        private void RaiseEvent(Phase phase) {
-            currentState.phase = phase;
-            gameEvent?.Raise(currentState);
         }
     }
 }

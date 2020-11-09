@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
+using Util.Attributes;
 
 namespace States {
 public class StateMachineTicker : Ticker {
     private bool _stateAlreadySet;
     private Dictionary<Type, OldState> _states;
-    public OldState currentOldState;
+    [Expandable] public OldState currentOldState;
 
     public void Awake() {
         _states = new Dictionary<Type, OldState>();

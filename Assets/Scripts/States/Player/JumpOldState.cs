@@ -30,7 +30,7 @@ public class JumpOldState : AirOldState {
     }
 
     public override void Exit() {
-        base.Tick();
+        base.Exit();
         jump.Phase = Phase.End;
     }
 }

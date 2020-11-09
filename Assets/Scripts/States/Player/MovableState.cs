@@ -11,11 +11,10 @@ namespace States.Player {
         [Expandable, NotNull] public LinearAccelerateTraits accelerateTraits;
         [Expandable, NotNull] public WLinearAccelerateTraits traits;
 
-        public override void Transition() {
-            if (Controller is null) 
-                Controller = stateMachine.gameObject.GetComponent<CharacterController>();
-            if (Input is null)
-                Input = stateMachine.gameObject.GetComponent<InputManager>();
+        public override void Initialize(StateMachine newStateMachine) {
+            base.Initialize(newStateMachine);
+            Controller = stateMachine.gameObject.GetComponent<CharacterController>();
+            Input = stateMachine.gameObject.GetComponent<InputManager>();
         }
     }
 }
