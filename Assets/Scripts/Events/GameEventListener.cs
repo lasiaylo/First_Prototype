@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using JetBrains.Annotations;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Events {
-    public class GameEventListener<T> : MonoBehaviour {
-        [SerializeField] private GameEvent<T> gameEvent;
-        [SerializeField] private UnityEvent<T> response;
+    public abstract class GameEventListener<T> : MonoBehaviour {
+        [SerializeField, NotNull] private GameEvent<T> gameEvent;
+        [SerializeField, NotNull] protected UnityEvent<T> response;
 
         public void OnEnable() {
             gameEvent.RegisterListener(this);
@@ -13,7 +15,7 @@ namespace Events {
         public void OnDisable() {
             gameEvent.UnregisterListener(this);
         }
-
+        
         public void OnEventRaised(T val) {
             response.Invoke(val);
         }

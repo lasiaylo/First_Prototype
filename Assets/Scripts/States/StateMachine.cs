@@ -14,7 +14,7 @@ namespace States {
         private bool _stateAlreadySet;
         private Dictionary<Type, State> _stateDict;
 
-        public void Awake() {
+        public void Start() {
             _stateDict = new Dictionary<Type, State>();
             for (int i = 0; i < states.Count; i++) {
                 states[i] = Instantiate(states[i]);
@@ -42,7 +42,6 @@ namespace States {
             Type type = typeof(TState);
             if (_stateDict.ContainsKey(type))
                 return (TState) _stateDict[type];
-            Debug.Log("YOU SHOULDn'T BE HERE");
             TState state = ScriptableObject.CreateInstance<TState>();
             InitializeState(state);
             return state;
