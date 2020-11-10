@@ -4,12 +4,21 @@ using ScriptableObjects.Prototypes.Wrapper;
 using UnityEngine;
 using Util.Attributes;
 
+public enum PlayerState {
+    Idle,
+    Run,
+    Jump,
+    Fall,
+}
+
 namespace States.Player {
     public abstract class MovableState : State {
-        protected CharacterController Controller;
-        protected InputManager Input;
         [Expandable, NotNull] public LinearAccelerateTraits accelerateTraits;
         [Expandable, NotNull] public WLinearAccelerateTraits wrapper;
+        protected CharacterController Controller;
+        protected InputManager Input;
+
+        public abstract PlayerState PlayerState { get; }
 
         public override void Initialize(StateMachine newStateMachine) {
             base.Initialize(newStateMachine);

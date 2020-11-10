@@ -951,6 +951,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1998874779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998874777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f5f9d3c3ded8604da6c222cda4f6759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2090511223
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,6 +1078,7 @@ GameObject:
   - component: {fileID: 2092366485}
   - component: {fileID: 2092366484}
   - component: {fileID: 2092366483}
+  - component: {fileID: 2092366488}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -1146,6 +1159,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7f71d13be08fa50419a3aad3b0f42233, type: 2}
   - {fileID: 11400000, guid: 13b22ea98e722ef47b58937d44b11e90, type: 2}
   - {fileID: 11400000, guid: 47f3c278391392a46ba4ff428881943d, type: 2}
+--- !u!95 &2092366488
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092366482}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d20cbd56b7580b499a8da863aa53cb2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &2092366489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1162,9 +1194,9 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TestStateEventListener, Assembly-CSharp
-        m_MethodName: Test
+      - m_Target: {fileID: 1998874779}
+        m_TargetAssemblyTypeName: StateAnimator, Assembly-CSharp
+        m_MethodName: Trigger
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1174,18 +1206,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TestStateEventListener, Assembly-CSharp
-        m_MethodName: TestString
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Wowwee
-          m_BoolArgument: 0
-        m_CallState: 1
 --- !u!114 &2092366491
 MonoBehaviour:
   m_ObjectHideFlags: 0

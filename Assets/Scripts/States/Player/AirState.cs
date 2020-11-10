@@ -1,7 +1,7 @@
 ﻿using Util;
 
 namespace States.Player {
-    public class AirState : MovableState {
+    public abstract class AirState : MovableState {
         public override void Transition() {
             if (!Controller.isGrounded) return;
             if (Input.InputDirection.IsZero())

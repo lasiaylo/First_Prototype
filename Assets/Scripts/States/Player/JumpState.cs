@@ -9,6 +9,8 @@ namespace States.Player {
         public JumpTraits jump;
         private MovementTicker _movementTicker;
 
+        public override PlayerState PlayerState => PlayerState.Jump;
+
         public override void Initialize(StateMachine newStateMachine) {
             base.Initialize(newStateMachine);
             _movementTicker = stateMachine.gameObject.GetComponent<MovementTicker>();
