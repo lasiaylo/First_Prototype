@@ -10,12 +10,12 @@ public class TurnTowards : Mod<Quaternion> {
     [Expandable] public FloatVariable turnSpeed;
 
     public override Quaternion Modify(Quaternion val) {
-        return direction.val.IsZero()
+        return direction.Val.IsZero()
             ? val
             : Quaternion.RotateTowards(
                 val,
-                Quaternion.LookRotation(direction.val),
-                turnSpeed.val * Time.deltaTime
+                Quaternion.LookRotation(direction.Val),
+                turnSpeed.Val * Time.deltaTime
             );
     }
 }

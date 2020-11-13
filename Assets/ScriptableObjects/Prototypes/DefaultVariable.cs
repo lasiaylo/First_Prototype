@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace ScriptableObjects.Prototypes {
 public abstract class DefaultVariable<T> : DefaultScriptableObject {
-    [SerializeField] private T defaultVal;
-    public T val;
+    [SerializeField] private T _defaultVal;
+    public T Val;
 
     public override void ResetToDefault() {
-        val = defaultVal;
+        Val = _defaultVal;
     }
 
 }

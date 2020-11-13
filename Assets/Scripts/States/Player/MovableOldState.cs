@@ -19,7 +19,7 @@ public abstract class MovableOldState : OldState {
 
     public override void Enter() {
         base.Enter();
-        traits.val = accelerateTraits;
+        traits.Val = accelerateTraits;
     }
 }
 }

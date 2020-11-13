@@ -1,7 +1,6 @@
 ﻿using JetBrains.Annotations;
 using ScriptableObjects.Prototypes.Trait;
 using UnityEngine;
-using Util;
 using Util.Attributes;
 
 namespace Translate.Movement {
@@ -15,6 +14,12 @@ namespace Translate.Movement {
 public class Jump : Mod<Vector3> {
     [Expandable, NotNull] public JumpTraits traits;
 
+    public override Vector3 Modify(Vector3 val) {
+        if (traits.Phase == Phase.Start) return StartJump(val);
+        if (traits.Phase == Phase.Continue) return ContinueJump(val);
+        return EndJump(val);
+    }
+
     private Vector3 StartJump(Vector3 direction) {
         traits.timer.Reset();
         return new Vector3(direction.x, traits.Speed, direction.z);
@@ -22,20 +27,17 @@ public class Jump : Mod<Vector3> {
 
     private Vector3 ContinueJump(Vector3 direction) {
         traits.timer.Tick(Time.deltaTime);
-        var continueVelocity = Mathf.Min(traits.Speed, direction.y);
+        float continueVelocity = Mathf.Min(traits.Speed, direction.y);
         return new Vector3(direction.x, continueVelocity, direction.z);
     }
 
     private Vector3 EndJump(Vector3 direction) {
         traits.timer.End();
         return direction;
-        // return new Vector3(direction.x, direction.y.ClampMax(0f), direction.z);
-    }
-
-    public override Vector3 Modify(Vector3 val) {
-        if (traits.Phase == Phase.Start) return StartJump(val);
-        if (traits.Phase == Phase.Continue) return ContinueJump(val);
-        return EndJump(val);
+        // float reducedVelocity = direction.y > 0
+        //     ? direction.y / 2
+        //     : direction.y;
+        // return new Vector3(direction.x, reducedVelocity, direction.z);
     }
 }
 }

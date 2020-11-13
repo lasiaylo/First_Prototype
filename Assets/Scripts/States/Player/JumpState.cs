@@ -16,11 +16,6 @@ namespace States.Player {
             _movementTicker = stateMachine.gameObject.GetComponent<MovementTicker>();
         }
 
-        public override State Enter() {
-            jump.Phase = Phase.Start;
-            return base.Enter();
-        }
-
         public override State Tick() {
             jump.Phase = Input.Phase;
             return base.Tick();
@@ -32,9 +27,9 @@ namespace States.Player {
         }
 
         public override void Transition() {
-            base.Transition();
-            if (jump.timer.IsEnd() || _movementTicker.Value.y <= 0)
+            if ( _movementTicker.Value.y <= 0 && !Controller.isGrounded) {
                 stateMachine.SetState<FallState>();
+            }
         }
     }
 }

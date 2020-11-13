@@ -8,7 +8,7 @@ namespace States.Player {
 
         public override void Transition() {
             base.Transition();
-            if (Input.InputDirection.IsZero())
+            if (Input.InputDirection.IsZero() && Controller.velocity.IsZero())
                 stateMachine.SetState<IdleState>();
         }
     }

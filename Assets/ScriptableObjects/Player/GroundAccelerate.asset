@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149b7f07ea541bebcbd4ccc6e5fb402, type: 3}
   m_Name: GroundAccelerate
   m_EditorClassIdentifier: 
-  acceleration: 60.38
-  deceleration: 80
-  maxSpeed: {x: 30, y: 0, z: 30}
+  acceleration: 120
+  deceleration: 200
+  maxSpeed: {x: 11, y: 0, z: 11}

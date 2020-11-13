@@ -17,8 +17,8 @@ public class InputManager : MonoBehaviour, PlayerInput.IGameplayActions {
     }
 
     public Vector3 InputDirection {
-        get => inputDirection.val;
-        private set => inputDirection.val = value.normalized;
+        get => inputDirection.Val;
+        private set => inputDirection.Val = value.normalized;
     }
 
     public void Awake() {

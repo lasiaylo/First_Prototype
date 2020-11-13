@@ -2,7 +2,7 @@
 using States;
 using UnityEngine;
 
-namespace ScriptableObjects.Events {
-    [CreateAssetMenu(fileName = "StateEvent", menuName = "StateEvent", order = 0)]
+namespace ScriptableObjects.Prototypes.Events {
+    [CreateAssetMenu(fileName = "StateEvent", menuName = "Events/State", order = 0)]
     public class StateEvent : GameEvent<State> { }
-}
+} 
