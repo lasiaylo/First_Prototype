@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1a697f9e9a444382fcf721d7c5a878, type: 3}
   m_Name: PlayerTurn
   m_EditorClassIdentifier: 
-  defaultVal: 800
+  _defaultVal: 900
+  Val: 900

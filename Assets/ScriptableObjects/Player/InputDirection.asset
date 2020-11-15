@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c152f972044637abcc80b1cf0375a6, type: 3}
   m_Name: InputDirection
   m_EditorClassIdentifier: 
-  val: {x: 0, y: 0, z: 0}
+  _defaultVal: {x: 0, y: 0, z: 0}
   Val: {x: 0, y: 0, z: 0}

@@ -1,15 +1,15 @@
-﻿using Translate.Movement;
+﻿using UnityEngine;
 using Util;
 
 namespace States.Player {
-public abstract class AirState : MovableState {
-
-    public override void Transition() {
-        if (!Controller.isGrounded) return;
-        if (Input.InputDirection.IsZero())
-            StateMachine.SetState<StandState>();
-        else
-            StateMachine.SetState<RunState>();
+    public abstract class AirState : MovableState {
+        public override void Transition() {
+            // Debug.Log(Controller.isGrounded);
+            if (!Controller.isGrounded) return;
+            if (Input.InputDirection.IsZero())
+                stateMachine.SetState<IdleState>();
+            else
+                stateMachine.SetState<RunState>();
+        }
     }
-}
 }

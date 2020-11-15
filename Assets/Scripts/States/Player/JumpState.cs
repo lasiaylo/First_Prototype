@@ -1,35 +1,35 @@
 ﻿using JetBrains.Annotations;
 using ScriptableObjects.Prototypes.Trait;
 using Translate.Movement;
+using UnityEngine;
 
 namespace States.Player {
-public class JumpState : AirState {
-    [NotNull] public JumpTraits jump;
-    private Movement _movement;
+    [CreateAssetMenu(fileName = "JumpState", menuName = "States/JumpState", order = 2)]
+    public class JumpState : AirState {
+        public JumpTraits jump;
+        private MovementTicker _movementTicker;
 
-    public override void Awake() {
-        base.Awake();
-        _movement = GetComponent<Movement>();
-    }
+        public override PlayerState PlayerState => PlayerState.Jump;
 
-    public override void Enter() {
-        base.Enter();
-        jump.Phase = Phase.Start;
-    }
+        public override void Initialize(StateMachine newStateMachine) {
+            base.Initialize(newStateMachine);
+            _movementTicker = stateMachine.gameObject.GetComponent<MovementTicker>();
+        }
 
-    public override void Transition() {
-        base.Transition();
-        if (jump.timer.IsEnd() || _movement.Value.y <= 0) StateMachine.SetState<FallState>();
-    }
+        public override State Tick() {
+            jump.Phase = Input.Phase;
+            return base.Tick();
+        }
 
-    public override void Tick() {
-        base.Tick();
-        jump.Phase = Input.Phase;
-    }
+        public override State Exit() {
+            jump.Phase = Phase.End;
+            return base.Exit();
+        }
 
-    public override void Exit() {
-        base.Tick();
-        jump.Phase = Phase.End;
+        public override void Transition() {
+            if ( _movementTicker.Value.y <= 0 && !Controller.isGrounded) {
+                stateMachine.SetState<FallState>();
+            }
+        }
     }
-}
 }

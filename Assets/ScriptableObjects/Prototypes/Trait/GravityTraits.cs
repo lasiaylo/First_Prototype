@@ -4,17 +4,16 @@ using UnityEngine;
 namespace ScriptableObjects.Prototypes.Trait {
 [CreateAssetMenu(fileName = "GravityTraits", menuName = "Traits/Gravity", order = 0)]
 public class GravityTraits : DefaultScriptableObject {
-    [SerializeField] private float arcMult;
     [NonSerialized] public float ArcMult;
-    [SerializeField] private float arcThreshold;
     [NonSerialized] public float ArcThreshold;
-    [SerializeField] private float gravity;
-
     [NonSerialized] public float Gravity;
-    [SerializeField] private float groundGravity;
     [NonSerialized] public float GroundGravity;
-    [SerializeField] private float maxFallSpeed;
     [NonSerialized] public float MaxFallSpeed;
+    [SerializeField] private float arcMult = 0;
+    [SerializeField] private float arcThreshold = 0;
+    [SerializeField] private float gravity = 0;
+    [SerializeField] private float groundGravity = 0;
+    [SerializeField] private float maxFallSpeed = 0;
 
     public override void ResetToDefault() {
         Gravity = gravity;

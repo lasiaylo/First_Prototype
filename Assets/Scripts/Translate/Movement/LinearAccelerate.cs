@@ -20,7 +20,7 @@ public class LinearAccelerate : Mod<Vector3> {
     [Expandable, NotNull] public WLinearAccelerateTraits traits;
 
     protected Vector3 Target {
-        get => Vector3.Scale(inputDirection.val, traits.val.MaxSpeed);
+        get => Vector3.Scale(inputDirection.Val, traits.Val.MaxSpeed);
     }
 
     public override Vector3 Modify(Vector3 val) {
@@ -28,9 +28,9 @@ public class LinearAccelerate : Mod<Vector3> {
     }
 
     protected float Speed(Vector3 val) {
-        return !inputDirection.val.IsZero() && Vector3.Angle(val.GetXz(), inputDirection.val.GetXz()) <= 90
-            ? traits.val.Acceleration
-            : traits.val.Deceleration;
+        return !inputDirection.Val.IsZero() && Vector3.Angle(val.GetXz(), inputDirection.Val.GetXz()) <= 90
+            ? traits.Val.Acceleration
+            : traits.Val.Deceleration;
     }
 }
 }

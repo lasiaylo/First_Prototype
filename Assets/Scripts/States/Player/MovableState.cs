@@ -1,25 +1,29 @@
 ﻿using JetBrains.Annotations;
 using ScriptableObjects.Prototypes.Trait;
-using ScriptableObjects.Prototypes.Variable;
 using ScriptableObjects.Prototypes.Wrapper;
 using UnityEngine;
 using Util.Attributes;
 
-namespace States.Player {
-public abstract class MovableState : State {
-    protected CharacterController Controller;
-    protected InputManager Input;
-    [Expandable, NotNull] public LinearAccelerateTraits accelerateTraits;
-    [Expandable, NotNull] public WLinearAccelerateTraits traits;
-
-    public virtual void Awake() {
-        Controller = GetComponent<CharacterController>();
-        Input = GetComponent<InputManager>();
-    }
-
-    public override void Enter() {
-        base.Enter();
-        traits.val = accelerateTraits;
-    }
+public enum PlayerState {
+    Idle,
+    Run,
+    Jump,
+    Fall,
 }
+
+namespace States.Player {
+    public abstract class MovableState : State {
+        [Expandable, NotNull] public LinearAccelerateTraits accelerateTraits;
+        [Expandable, NotNull] public WLinearAccelerateTraits wrapper;
+        protected CharacterController Controller;
+        protected InputManager Input;
+
+        public abstract PlayerState PlayerState { get; }
+
+        public override void Initialize(StateMachine newStateMachine) {
+            base.Initialize(newStateMachine);
+            Controller = stateMachine.gameObject.GetComponent<CharacterController>();
+            Input = stateMachine.gameObject.GetComponent<InputManager>();
+        }
+    }
 }

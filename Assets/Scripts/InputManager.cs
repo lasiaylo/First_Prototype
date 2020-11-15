@@ -9,7 +9,7 @@ using Util.Attributes;
 public class InputManager : MonoBehaviour, PlayerInput.IGameplayActions {
     private PlayerInput _playerInput;
     [Expandable, NotNull] public Vector3Variable inputDirection;
-    [Expandable, NotNull] public Phase phase = Phase.End;
+    public Phase phase = Phase.End;
 
     public Phase Phase {
         get => phase;
@@ -17,8 +17,8 @@ public class InputManager : MonoBehaviour, PlayerInput.IGameplayActions {
     }
 
     public Vector3 InputDirection {
-        get => inputDirection.val;
-        private set => inputDirection.val = value.normalized;
+        get => inputDirection.Val;
+        private set => inputDirection.Val = value.normalized;
     }
 
     public void Awake() {
@@ -32,7 +32,7 @@ public class InputManager : MonoBehaviour, PlayerInput.IGameplayActions {
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        Phase = context.started ? Phase.Continue : Phase.End;
+        Phase = context.canceled ? Phase.End : Phase.Continue;
     }
 
     public void OnEnable() {

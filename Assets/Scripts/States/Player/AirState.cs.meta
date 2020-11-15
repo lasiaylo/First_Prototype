@@ -1,14 +1,3 @@
-fileFormatVersion: 2
-guid: 034303f07f9a46fcad96237785ef270d
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences:
-  - gameEvent: {instanceID: 0}
-  - accelerateTraits: {fileID: 11400000, guid: faec6171331d33e4882711f23f804612, type: 2}
-  - traits: {instanceID: 0}
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+﻿fileFormatVersion: 2
+guid: b6952a1f646d42738ffa7ef4c30c1d1a
+timeCreated: 1604872980

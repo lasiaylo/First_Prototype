@@ -1,24 +1,27 @@
-﻿using ScriptableObjects.Prototypes.Event;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace States {
-public abstract class State : MonoBehaviour {
-    public StateMachine StateMachine { get; set; }
-    [SerializeField] private GameEvent<Phase> gameEvent;
+    public abstract class State : ScriptableObject {
+        public Phase phase;
+        [HideInInspector] public StateMachine stateMachine;
 
-    public virtual void Enter() {
-        gameEvent?.Raise(Phase.Start);
+        public virtual void Initialize(StateMachine newStateMachine) {
+            stateMachine = newStateMachine;
+        }
+
+        public virtual State Enter() => ModifyState(Phase.Start);
+
+        public virtual State Tick() => ModifyState(Phase.Continue);
+
+        public virtual State Exit() => ModifyState(Phase.End);
+
+        public virtual void Transition() {
+            throw new System.NotImplementedException();
+        }
+
+        protected State ModifyState(Phase newPhase) {
+            phase = newPhase;
+            return this;
+        }
     }
-
-    public virtual void Tick() {
-        gameEvent?.Raise(Phase.Continue);
-    }
-
-    public virtual void Exit() {
-        gameEvent?.Raise(Phase.End);
-    }
-
-    public abstract void Transition();
-}
-
 }
