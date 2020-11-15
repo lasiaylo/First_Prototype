@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerGravity
   m_EditorClassIdentifier: 
   arcMult: 0.8
-  arcThreshold: 3
+  arcThreshold: 4
   gravity: 45
   groundGravity: 1
   maxFallSpeed: 15.02
