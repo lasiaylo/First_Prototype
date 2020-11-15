@@ -9,30 +9,22 @@ public class PlayerMovementTest : MonoBehaviour {
     [Expandable] public Vector3Variable inputDirection;
     public float duration;
     private List<Vector3> _directions;
+    private Toggle _toggle;
+    
     public void Start() {
         _directions = new List<Vector3>() {
-            Vector3.forward,
             Vector3.right,
-            Vector3.back,
-            Vector3.right,
+            Vector3.left,
         };
+        _toggle = new Toggle(false);
+        StartCoroutine(Move());
     }
 
-    // public void Update() {
-    //     StartCoroutine(Move());
-    // }
-
     private IEnumerator Move() {
-        for (int i = 0; i < _directions.Count; i++) {
-            inputDirection.Val = _directions[i];
-            Debug.Log(_directions[i]);
-            // if (_directions[i] != Vector3.forward) Debug.Break();
+        for (;;) {
+            inputDirection.Val = _directions[_toggle];
             yield return new WaitForSeconds(duration);
+            _toggle.Flip();
         }
-        // foreach (Vector3 direction in _directions) {
-        //     inputDirection.val = direction;
-        //     Debug.Log(direction);
-        //     yield return null;
-        // }
     }
 }
