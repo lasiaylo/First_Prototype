@@ -38,6 +38,10 @@ namespace States {
             currentState.Transition();
         }
 
+        public void InvokeState() {
+            currentState.Invoke();
+        }
+        
         private TState GetState<TState>() where TState : State {
             Type type = typeof(TState);
             if (_stateDict.ContainsKey(type))
@@ -46,6 +50,7 @@ namespace States {
             InitializeState(state);
             return state;
         }
+        
 
         private void InitializeState(State state) {
             Type type = state.GetType();

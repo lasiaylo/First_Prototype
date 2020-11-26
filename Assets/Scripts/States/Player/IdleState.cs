@@ -3,7 +3,7 @@ using UnityEngine;
 using Util;
 
 namespace States.Player {
-    [CreateAssetMenu(fileName = "IdleState", menuName = "States/IdleState", order = 0)]
+    [CreateAssetMenu(fileName = "IdleState", menuName = "States/Idle", order = 0)]
     public class IdleState : GroundState {
         public override PlayerState PlayerState => PlayerState.Idle;
 

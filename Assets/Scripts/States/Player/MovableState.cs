@@ -9,6 +9,7 @@ public enum PlayerState {
     Run,
     Jump,
     Fall,
+    JumpSquat,
 }
 
 namespace States.Player {

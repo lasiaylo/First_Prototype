@@ -19,6 +19,8 @@ namespace States {
             throw new System.NotImplementedException();
         }
 
+        public virtual void Invoke() { }
+
         private State ModifyState(Phase newPhase) {
             phase = newPhase;
             return this;

@@ -1,4 +1,5 @@
 ﻿using System;
+using Cinemachine;
 using Events;
 using JetBrains.Annotations;
 using ScriptableObjects.Prototypes.Trait;
@@ -28,11 +29,13 @@ public class Gravity : Mod<Vector3> {
     }
 
     public override Vector3 Modify(Vector3 val) {
-        float speed = _controller.isGrounded ? traits.GroundGravity : traits.Gravity;
         float arcMult = ShouldArc(val) ? traits.ArcMult : 1;
+        if (_controller.isGrounded) {
+            return val.MoveTowardsY(-1, traits.GroundGravity * Time.deltaTime);
+        }
         return val.MoveTowardsY(
             -traits.MaxFallSpeed,
-            speed * arcMult * Time.deltaTime
+            traits.Gravity * arcMult * Time.deltaTime
         );
     }
 
