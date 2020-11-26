@@ -25,5 +25,10 @@ namespace States.Player {
             Controller = stateMachine.gameObject.GetComponent<CharacterController>();
             Input = stateMachine.gameObject.GetComponent<InputManager>();
         }
+
+        public override State Enter() {
+            wrapper.Val = accelerateTraits;
+            return base.Enter();
+        }
     }
 }

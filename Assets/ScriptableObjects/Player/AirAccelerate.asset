@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149b7f07ea541bebcbd4ccc6e5fb402, type: 3}
   m_Name: AirAccelerate
   m_EditorClassIdentifier: 
-  acceleration: 15
-  deceleration: 15
-  maxSpeed: {x: 10, y: 0, z: 10}
+  acceleration: 30
+  deceleration: 30
+  maxSpeed: {x: 11, y: 0, z: 11}

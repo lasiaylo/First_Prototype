@@ -19,7 +19,7 @@ namespace States {
             throw new System.NotImplementedException();
         }
 
-        protected State ModifyState(Phase newPhase) {
+        private State ModifyState(Phase newPhase) {
             phase = newPhase;
             return this;
         }
