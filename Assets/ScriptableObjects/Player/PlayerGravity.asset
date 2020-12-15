@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d5f3ee45cc4c8bb584450bb24a4259, type: 3}
   m_Name: PlayerGravity
   m_EditorClassIdentifier: 
-  arcMult: 0.8
+  arcMult: 0.9
   arcThreshold: 4
-  gravity: 45
+  defaultGravity: 40
+  fallGravity: 60
   groundGravity: 1
   maxFallSpeed: 15.02

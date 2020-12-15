@@ -21,22 +21,26 @@ public class Gravity : Mod<Vector3> {
     public GameEvent<bool> arcEvent; 
     private CharacterController _controller;
     private bool _arcStart;
-    private Toggle ThisIsBadCode;
     
     public void Awake() {
         _controller = GetComponent<CharacterController>();
-        ThisIsBadCode = new Toggle(false);
     }
 
     public override Vector3 Modify(Vector3 val) {
-        float arcMult = ShouldArc(val) ? traits.ArcMult : 1;
+       
         if (_controller.isGrounded) {
             return val.MoveTowardsY(-1, traits.GroundGravity * Time.deltaTime);
         }
         return val.MoveTowardsY(
             -traits.MaxFallSpeed,
-            traits.Gravity * arcMult * Time.deltaTime
+            GetGravity(val)
         );
+    }
+
+    private float GetGravity(Vector3 direction) {
+        float arcMult = ShouldArc(direction) ? traits.ArcMult : 1;
+        float gravity = direction.y >= 0 ? traits.DefaultGravity : traits.FallGravity;
+        return gravity * arcMult * Time.deltaTime;
     }
 
     private bool ShouldArc(Vector3 direction) {
